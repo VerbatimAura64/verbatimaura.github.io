@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Name Generator</title>
+		<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+		<script>
+			function MakeAName(){
+			}
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function myFunction() {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			function myFunction1() {
+				document.getElementById("myDropdown1").classList.toggle("show");
+			}
+			function myFunction2() {
+				document.getElementById("myDropdown2").classList.toggle("show");
+			}
+			// Close the dropdown menu if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+
+					var dropdowns = document.getElementsByClassName("dropdown-content");
+					var i;
+					for (i = 0; i < dropdowns.length; i++) {
+						var openDropdown = dropdowns[i];
+						if (openDropdown.classList.contains('show')) {
+						  openDropdown.classList.remove('show');
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+			<h1>Hi there! What's your name?</h1>
+				<form>
+				First name: <input type="text"
+									id="x"
+									name="x"
+									size="10"
+									value="First name"
+									onFocus="value=''"
+							/>
+		<br>
+				Last name: <input type="text"
+									id="y"
+									name="y"
+									size="10"
+									value="Last name"
+									onFocus="value=''"
+							/>
+		<br>
+			<b><hr align="left" size="1" width="200px"><b>
+		<br>
+				Your full name: <input type="text"
+										id="z"
+										name="z"
+										readonly
+										size="20"
+								/>
+		<br>
+				<input type="button"
+						onclick="this.form.z.value=(this.form.x.value) + (' ') +(this.form.y.value)"
+						value="What's my name?"
+				/>
+				<input type="reset" 
+						value="Reset Form"
+						/></td></tr>
+				</form>
+	</body>
+</html>

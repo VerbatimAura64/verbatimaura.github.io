@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exam 1 Questions</title>
+		<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+		<style type="text/css">
+			p{
+				color:blue;
+				background-color:yellow;
+			}
+			
+			ul p.note{
+				background-color:pink;
+			}
+			
+		</style>
+		<script>
+			function total(array) {
+				var tot = 0;
+				for (var i = 0; i < array.length; i++)
+					tot += parseInt(array[i]);
+				return tot;
+			}
+			
+			function avg(array) {
+				return total(array) / array.legnth;
+			}
+		/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+		<h1>Exam 1 Question 1</h1>
+			<p>What up homeskillet?</p>
+				<ul>
+					<p class="note">Hi there</p>
+				</ul>
+				<form name="distance_form">
+					<p>Enter the speed at which you pedalled your bicycle:
+					<input name="speed" type="text" size="15"/>
+					</p>
+				
+					<p>Enter how many hours you rode:
+					<input name="time" type="text" size="15"/>
+					</p>
+				
+					<input name="calculate_distance" type="button"
+						value="Calculate Distance Covered"
+						onclick="this.form.distance.value=this.form.speed.value * this.form.time.value" />
+					</p>
+				
+					<p> The total distance covered was
+					<input name="distance" type="text" readonly size="15">miles.
+					</p>
+				</form>
+			<p>Add x and y</p>
+				<form>
+					<p>X
+					<input name="x" type="text" size="15"/>
+					</p>
+				
+					<p>+ Y
+					<input name="y" type="text" size="15"/>
+					</p>
+			<hr>
+					<p> = Z
+					<input name="z" type="text" readonly size="15">
+					</p>
+					
+					<input name="addition" type="button"
+						value="Add!"
+						onclick="this.form.z.value=parseInt(this.form.x.value) + parseInt(this.form.y.value)" />
+				</form>
+				<form name="salaries_form">
+					<p>Enter how much each employee was paid (in thousands of dollars):
+					<input name="salaries" type="text" size="75"
+							value="20.5, 30.7, 19.2, 21.3" />
+					</p>
+					
+					<p>
+					<input name="show_average" type="button"
+							value="Calculate average salary"
+							onclick="this.form.average.value= avg(this.form.salaries.value.split (/\s*,\s*));" />
+					</p>
+					
+					<p>Here is the average employee salary:
+					<input name="average" type="text" readonly size="25" />
+					</form>				
+	</body>
+</html>

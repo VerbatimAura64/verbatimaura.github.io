@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Creating Objects</title>
+		<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+		<script type="text/javascript">
+			var items = new Array();
+			function Item(name, location, howMany, size) {
+				this.name = name;
+				this.location = location;
+				this.size = size;
+				this.quantity = howMany;
+			}
+			function addItem (name, loc, num, size) {
+				var item = new Item(name, loc, num, size);
+				items.push(item);
+			}
+			function showItems() {
+				var node = document.getElementById('item_div');
+				var data = "";
+				if (node) {
+					for (var i = 0; i < items.length; i++) {
+						var item = items[i];
+						var name= item.name;
+						var loc = item.location;
+						var quantity = item.quantity;
+						var size = item.size;
+						var datum = "<b>Type:</b> "  + name +
+									", <b>Color:</b> " + loc +
+									", <b>Amount:</b> " + quantity +
+									", <b>Size:</b> " + size;
+						data = data + '<p>' + datum + '</p>';
+					}
+					node.innerHTML = data
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+			<h1>Sorting your Lego Bricks</h1>
+				<form>
+					<p>
+					Type of Lego:
+					<input type="text" name="name" value="Enter the brick type here"
+							onclick="if (this.value == this.defaultValue) this.value=''"
+							size="40"
+					/>
+					</p>
+					<p>
+					Color of Lego:
+					<input type="text" name="location" value="Enter the brick's color here"
+							onclick="if (this.value == this.defaultValue) this.value=''"
+							size="40"
+					/>
+					</p>
+					<p>
+					Quantity of Lego:
+					<input type="text" name="quantity" value="Enter the number of these bricks you have here"
+							onclick="if (this.value == this.defaultValue) this.value=''"
+							size="35"
+					/>
+					</p>
+					<p>
+					Size of Lego:
+					<input type="text" name="size" value="Enter the stud dimension of this brick here"
+							onclick="if (this.value == this.defaultValue) this.value=''"
+							size="35"
+					/>
+					</p>
+					<p>
+					<input type="button"
+							onclick="addItem(this.form.name.value, this.form.location.value, this.form.quantity.value, this.form.size.value)"
+							value="Add a Lego"
+					/>
+					<input type="button"
+							onclick="showItems()"
+							value="Show Lego"
+					/>
+					<input type="reset"
+							value="Reset Form"
+					/>
+					</p>
+				</form>
+			<div id="item_div">
+			</div>
+	</body>
+</html>

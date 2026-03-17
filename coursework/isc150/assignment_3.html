@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+          "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+<title>Things about Writing</title>
+
+<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+
+<script type="text/javascript">
+
+  var ans1 = "In a post-Frey world, " +
+             "authors are recommended to " + 
+             "declare how truthful their work is.";
+
+  var ans2 = "129,864,880 books as of " +
+             "6 years ago, estimated by google.";
+
+  var ans3 = "There's no clear cut answer as " + 
+             "to which service is better. Both " +
+             "services have their ups and downs " +
+			 "so it is up to you to decide what fits you.";
+
+  var ans4 = "Submit it to literary magazines! " +
+             "Some will charge you, some won't. " +
+             "In the end though, you have the chance " +
+             "to get published, or even win a cool " +
+             "prize.";
+
+  function showAnswer(which) {
+    var tmp = document.getElementById('answer');
+        tmp.style.visibility = 'visible';
+        tmp.innerHTML = which;
+  }
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+
+<h2>Cool things about Writing and Publishing
+</h2>
+
+<div>
+<form action="javascript:void(0)">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<button style="width:200px; height:150px;"
+        name="button1"
+        onclick="showAnswer(ans1)"
+><img src="http://cs.oswego.edu/~walonzo/images/Pen_art.png"
+      width="50"
+      height="75"
+      border="0" />
+<br>
+Should we clarify whether or not a project or work of literature is true or not?
+</button>
+</td><td>
+
+<button style="width:200px; height:150px;"
+        name="button2"
+        onclick="showAnswer(ans2)"
+><img src="http://cs.oswego.edu/~walonzo/images/Pen_art.png"
+      width="50"
+      height="75"
+      border="0" />
+<br>
+How many books have been published overall?
+</button>
+</td><td>
+
+<button style="width:200px; height:150px;"
+        name="button3"
+        onclick="showAnswer(ans3)"
+><img src="http://cs.oswego.edu/~walonzo/images/Pen_art.png"
+      width="50"
+      height="75"
+      border="0" />
+<br>
+What's better, self publishing or traditional publish?
+</button>
+</td><td>
+
+<button style="width:200px; height:150px;"
+        name="button4"
+        onclick="showAnswer(ans4)"
+><img src="http://cs.oswego.edu/~walonzo/images/Pen_art.png"
+      width="50"
+      height="75"
+      border="0" />
+<br>
+What do I do if I have a short story, and not a novel length project?
+</button>
+</td></tr>
+</table>
+</form>
+</div>
+
+<div id="answer" style="border:1px black solid;">
+</div>
+</body>
+</html>

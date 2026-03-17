@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Riddle Me This</title>
+
+<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+
+<script type="text/javascript">
+
+  var asked = false;
+  var i = 0;
+  var questions  = new Array();
+  var answers    = new Array();
+      questions[i] = "How can a pocket be empty but still have something in it?";
+      answers[i]   = "It has a hole in it.";
+      i++;
+
+      questions[i] = "What word becomes shorter when you add letters to it?";
+      answers[i]   = "Short. Add (er) and you get shorter.";
+      i++;
+
+      questions[i] = "What is tall when young and short when old?";
+      answers[i]   = "A candle.";
+      i++;
+
+      questions[i] = "What happens once in a minute, twice in a moment, but never in a thousand years?";
+      answers[i]   = "The letter m.";
+      i++;
+
+  var currentQuestion = questions.length-1;
+
+  function askQuestion() {
+    // currentQuestion = (currentQuestion + 1) % questions.length;
+    currentQuestion = Math.floor(Math.random()*questions.length);
+    var tmp = document.getElementById('answer');
+        tmp.style.visibility = 'hidden';
+        tmp.innerHTML = "";
+        tmp = document.getElementById('question');
+        tmp.style.visibility = 'visible';
+        tmp.innerHTML = questions[currentQuestion];
+    asked = true;
+  }
+  function showAnswer() {
+    if (asked) {
+      var tmp = document.getElementById('answer');
+          tmp.style.visibility = 'visible';
+          tmp.innerHTML = answers[currentQuestion];
+    }
+    asked = false;
+  }
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+
+<h1>See if you can solve these riddles!</h1>
+
+<div>
+<form action="javascript:void(0)">
+<table border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td>
+<button style="width:200; height:150;" name="button1" onclick="askQuestion()"><img src="/~walonzo/images/trivia.png" width="50" height="75" border="0">
+Here's a question.
+</button>
+</td><td>
+
+<button style="width:200; height:150;" name="button2" onclick="showAnswer()"><img src="/~walonzo/images/trivia.png" width="50" height="75" border="0">
+Want the answer?
+</button>
+</td></tr>
+</tbody></table>
+
+</form>
+</div>
+
+<div id="question" style="border:1px black solid;">
+</div>
+<div id="answer" style="border:1px black solid;">
+</div>
+
+
+</body>
+</html>

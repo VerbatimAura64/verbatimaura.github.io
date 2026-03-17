@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Instructional Guide</title>
+		<link type="text" rel="stylesheet" href="/~walonzo/style/stylesheet.css" />
+		<style>
+		    [type=button] {
+				width:250px;
+			}
+			.right1 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.right2 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.left1 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.left2 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.center1 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.center2 {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+		</style>
+		<script>
+			/* When the user clicks on the button,
+			toggle between hiding and showing the dropdown content */
+			function myFunction () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			function myFunction1 () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			function myFunction2 () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			/* Close the dropdown menu if the user clicks outside of it */
+			window.oncllick = function(event) {
+				if (!event.target.matches('.droptbtn')) {
+					
+					var dropdowns = document.getElementByClassName ("dropdown-content");
+					var i;
+					for (i = 0; i < dropdowns.length; i++) {
+						var openDropdown = dropdowns [i];
+						if (openDropdown.classList.contains('show')) {
+							openDropdown.classList.remove('show');
+						}
+					}
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			function removeChildren(wherefrom) {
+			var parent = document.getElementById(wherefrom);
+				if (parent) {
+					while (parent.hasChildNodes())
+					parent.removeChild(parent.lastChild);
+				}
+			}
+			var aircraft = null;
+			function Aircraft(name, year, specs, picture) {
+				this.name = name;
+				this.year = year;
+				this.specs = specs;
+				this.picture = picture;
+			}
+			function showAircraft(aircraft, whereso) {
+			var craft = aircraft;
+			var node = document.getElementById(whereso);
+
+			if (node) {
+				var data = '<h1>' + craft.name + '</h1>';
+					data += '<h2>' + craft.year + '</h2>';
+					data += '<ul type="disc">';
+
+				for (var prop in craft.specs) {
+					var property = prop;
+					var property_value = craft.specs[prop];
+					if (property) property += ':';
+					// var item = "<li> <b>" + property + ":</b> " + property_value;
+					var item = "<li> <b>" + property + "</b> " + property_value;
+					data +=  item;
+				}
+				data += "</ul>";
+				var img = '<p><img src="' + craft.picture +
+						  '" width="200" height="165" border="0"' +
+						  ' /></p>';
+				data += img;
+				node.innerHTML = data;
+			}
+		}
+		function hideAircraft1() {
+			var nodes = document.getElementsByTagName('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step1') {
+					nodes[n].value = 'Step1';
+					nodes[n].onclick = showAircraft1;
+					break;
+				}
+			}
+			removeChildren('now');
+			return false;
+		}
+		function hideAircraft2() {
+			var nodes = document.getElementsByTagName('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step2') {
+					nodes[n].value = 'Step2';
+					nodes[n].onclick = showAircraft2;
+					break;
+				}
+			}
+			removeChildren('then');
+			return false;
+		}
+		function hideAircraft3() {
+			var nodes = document.getElementsByTagName('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step3') {
+					nodes[n].value = "Step3";
+					nodes[n].onclick = showAircraft3
+					break;
+				}
+			}
+			removeChildren('after');
+			return false;
+		}
+		function hideAircraft(which) {
+			removeChildren(which);
+		}
+
+		function showAircraft1() {
+			var nodes = document.getElementsByTagName('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step1') {
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft1;
+					break;
+				}
+			}
+			var name = "Step 1";
+			var year = "";
+			var specs = {
+				'Step 1': 'Place the shoe on a flat surface and grab your laces',
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step1.jpg');
+			showAircraft(plane, 'now');
+		}
+
+		function showAircraft2() {
+			var nodes = document.getElementsByTagName('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step2') {
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft2;
+					break;
+				}
+			}
+			var name = "Step 2";
+			var year = "";
+			var specs = {
+				'Step 2': 'Tie a basic knot by threading one lace through the other and pulling tight'
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step2.jpg');
+			showAircraft(plane, 'then');
+		}
+		
+		function showAircraft3 () {
+			var nodes = document.getElementsByTagName ('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step3'){
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft3;
+					break;
+				}
+			}
+			var name= "Step 3";
+			var year = "";
+			var specs = {
+				'Step 3': ' Make a loop with one lace'
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step3.jpg');
+			showAircraft(plane, 'after');
+		}
+	  
+		function showAircraft4 () {
+			var nodes = document.getElementsByTagName ('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step4'){
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft3;
+					break;
+				}
+			}
+			var name= "Step 4";
+			var year = "";
+			var specs = {
+				'Step 4': 'With your other hand, wrap the free lace around the loop'
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step4.jpg');
+			showAircraft(plane, 'step4');
+		}	  
+	  
+		function showAircraft5 () {
+			var nodes = document.getElementsByTagName ('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step5'){
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft3;
+					break;
+				}
+			}
+	  
+			var name= "Step 5";
+			var year = "";
+			var specs = {
+				'Step 5': 'Pull the shoelace through the hole to form another loop'
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step5.jpg');
+			showAircraft(plane, 'step5');
+		}	  
+	  
+		function showAircraft6 () {
+			var nodes = document.getElementsByTagName ('input');
+			for (var n in nodes) {
+				if (nodes[n].getAttribute('name') == 'Step6'){
+					nodes[n].value = 'Hide';
+					nodes[n].onclick = hideAircraft3;
+					break;
+				}
+			}
+			var name= "Step 6";
+			var year = "";
+			var specs = {
+				'Step 6': 'Hold both loops and pull them tight'
+			};
+			var plane = new Aircraft(name, year, specs, '/~walonzo/images/step6.jpg');
+			showAircraft(plane, 'step6');
+		}
+		</script>
+	</head>
+	<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+				<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			</li>
+			<li><div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+		<h1>Tying your shoes with Bunny Ears!</h1>
+		<p>Image courtesy of WikiHow</p>
+		<form>
+			<table>
+				<tr><td>
+					<input type="button" name="Step1" value="Step1"
+							onclick="showAircraft1()"
+					/>
+				</td><td>
+					<input type="button" name="Step2" value="Step2"
+							onclick="showAircraft2()"
+					/>
+				</td><td>
+					<input type="button" name="Step3" value="Step3"
+							onclick="showAircraft3 ()"
+					/>
+				</td><td>
+					<input type="button" name="Step4" value="Step4"
+							onclick="showAircraft4()"
+					/>
+				</td><td>
+					<input type="button" name="Step5" value="Step5"
+							onclick="showAircraft5()"
+					/>				
+				</td><td>
+					<input type="button" name="Step6" value="Step6"
+							onclick="showAircraft6()"
+					/>
+				</td></tr>
+			</table>
+		</form>
+		<div id="now" class="left1">
+		</div>
+		<div id="then" class="left2">
+		</div>
+		<div id="after" class="center1">
+		</div>
+		<div id="step4" class="center2">
+		</div>
+		<div id="step5" class="right1">
+		</div>
+		<div id="step6" class="right2">
+		</div>
+	</body>
+</html>

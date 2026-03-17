@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>RGB Color Standard</title>
+		<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+		<script>
+	/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+	<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+		<h1>RGB Color Standard</h1>
+			<p>When it comes to picking out colors to use on a client device such as
+			 a computer, mobile device, or tablet, the programmger has a wide range
+			 of colors to choose from. They can decide whether to use Hexidecimal style,
+			 HTML style or CSS to specify colors. CSS uses actual color names while HTML 
+			 uses three sets of numbers to define the RGB scale. Here, we will discuss the
+			 hexidecimal way of specification.</p>
+			 <p>The first to know about Hexidecimal classification is the range and meaning
+			 of every symbol in this 6 character string. Hexadecimal has a base of 16, which
+			 means the scale runs from 0 to F. The scale begins at 0, which is the lowest of
+			 that scale and runs all the way up to F, the max. Now the reason we don't use numbers
+			 is because the colors red, green, and blue and represented by two values. Three colors
+			 with two colors amounts to six characters/values. This is one of the reasons why
+			 there are no numbers above the value of 9.</p>
+			 <p>To help convey the meaning of Hex numbers, here is the color white in hex: <p> <font color="white">#FFFFFF</font> </p>
+			 and here is the color black: <p><font color="black">#000000.</font></p> If this is the first time you're seeing something
+			 like this it might seem strange, but allow me to explain. The first two numbers in that
+			 string represent the Red scale, the following two represent the Green scale, and the last
+			 two are for blue. Therefore, if we wanted to say the first character, the first value of red
+			 is worth ten, we have to say #A00000. If we tried using ten in the first spot, we wouldn't have 
+			 a six character string anymore, or it would look like this: #100000 which is a totally different color
+			 than the one we want. You can go on google and type in a similar hex number as to those above to see what
+			 color you get. The background color of this page is #C6E2FF, and if you google that, you'll get the color you see here!</p>
+	</body>
+</html>
+			

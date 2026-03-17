@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <title>Ice Cream Cones</title>
+ <link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+
+<script type="text/javascript">
+  Math.square = function(x) { return x * x }
+  
+  
+  function clearit() {
+    document.coneform.volume.value = ""
+    document.coneform.surfacearea.value = ""
+  }
+  
+  function findlength() {
+	document.coneform.length.value = Math.sqrt(Math.square(coneform.radius.value) + Math.square(coneform.height.value))
+	}
+
+  function findvolume() {
+     // v=pi*r^2*(h/3)
+    document.coneform.volume.value = (Math.PI * Math.square(coneform.radius.value) * coneform.height.value) / 3
+        
+  }
+
+  function findsurfacearea() {
+     // a=pi*r*l+pi*r^2
+    document.coneform.surfacearea.value = (Math.PI) * (coneform.radius.value) * (coneform.length.value) + Math.PI * Math.square(coneform.radius.value)
+										
+ }
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body text="#000000"
+      link="#000000" vlink="#000000" alink="#000000"
+>
+	<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+
+	<p class="header">
+	Cone Statistics
+	</p>
+
+<p>
+This page helps an ice cream vendor estimate:
+<ul type="disc">
+<li> how much ice cream will be needed to fill each cone and
+<li> how much chocolate will be required to coat the outside
+of each cone.
+</ul>
+
+<div class="pic">
+<img src="/~walonzo/images/cone.jpg">
+</div>
+
+</p>
+<h2>Make sure you find the length of the side of the cone first before finding the surface area!</h2>
+<p>
+<form name="coneform">
+  <table border="2" cellpadding="5" cellspacing="2">
+  <tr><td>
+     <table border="1" cellpadding="1" cellspacing="1">
+       <tr><td>
+        Radius:
+       </td><td>
+        <input class="input" name="radius" type="text" size="10" value="3" onClick="this.value=''" />
+         cm
+       </td></tr>
+       <tr><td>
+        Height:
+       </td><td>
+        <input class="input" name="height" type="text" size="10" value="4" onClick="this.value=''" />
+         cm
+       </td></tr>
+	   <tr><td>
+        Length:
+       </td><td>
+        <input class="output" name="length" type="text" size="10" readonly />
+         cm
+       </td></tr>
+     </table>
+  </td></tr>
+  <tr><td>
+     <table border="1" cellpadding="1" cellspacing="1">
+       
+	   <tr><td>
+        Volume:
+       </td><td>
+        <input class="output" name="volume" type="text" size="20" readonly />
+         cm<sup>3</sup>
+       </td></tr>
+       <tr><td>
+        Surface Area:
+       </td><td>
+        <input class="output" name="surfacearea" type="text" size="20" readonly />
+         cm<sup>2</sup>
+       </td></tr>
+	    
+		
+     </table>
+
+  </td></tr>
+  <tr><td>
+     <table border="1" cellpadding="1" cellspacing="1">
+       <tr><td>
+		<input class="butt" name="lengthbutton" value="Find Length" type="button" onClick="findlength();" />
+        <input class="butt" name="volumebutton" value="Find Volume" type="button" onClick="findvolume();" />
+        <input class="butt" name="surfaceareabutton" value="Find Surface Area" type="button" onClick="findsurfacearea();" />
+        <input class="butt" name="clearbutton" value="Clear outputs" type="button" onClick="clearit();" />
+       </td></tr>
+     </table>
+
+  </td></tr>
+  </table>
+</form>
+</p>
+
+</body>
+</html>

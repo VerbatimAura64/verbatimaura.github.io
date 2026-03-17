@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Accumulation Page Divisible by N</title>
+		<link type="text/css" rel="stylesheet" href="/~walonzo/style/stylesheet.css"/>
+	<script type="text/javascript">
+		function sumDivFromA2B (a, b, n) {
+			var accumulator = 0;
+			var start = parseInt(a);
+			if (start % parseInt(n) != 0) start++;
+			var stop = parseInt(b);
+			for (var i = start; i <=stop; i++) {
+					if (i%parseInt(n) ==0)
+					accumulator += i;
+				}
+			return accumulator;
+		}
+	/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="myFunction()" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			<li><div class="dropdown">
+					<button onclick="myFunction1()" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="myFunction2()" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+			<h1>Sample Javascript &mdash; Accumulation </h1>
+				</p>
+				<p>
+			<h2>Sum the numbers <i>divisible by N</i> from <tt>A</tt> to <tt>B</tt></h2>
+				</p>
+		<div style="border:2px dashed green;background:#f5f5dc;">
+			<form>
+				A: <input type="text"
+							id="A"
+							name="A"
+							size="10"
+							value="2"
+							onFocus="if (value == this.defaultValue) value = ''"
+					/>
+				&nbsp
+				B: <input type="text"
+							id="B"
+							name="B"
+							size="10"
+							value="10"
+							onFocus="if (value == this.defaultValue) value = ''"
+					/>
+				&nbsp
+				N: <input type="text"
+							id="n"
+							name="n"
+							size="10"
+							value="2"
+							onFocus="if (value == this.defaultValue) value = ''"
+					/>
+	<br>
+				Accumulated sum:
+					<input type="text"
+							id="TOTAL"
+							name="TOTAL"
+							readonly
+							size="20"
+					/>
+	<br>				
+				<input type="button"
+						value="Do Accumulation"
+						onclick="this.form.TOTAL.value = sumDivFromA2B(this.form.A.value, this.form.B.value, this.form.n.value)"
+				/>
+				<input type="reset" value="Reset Form"> </td></tr>
+			</form>
+		</div>
+	</body>
+</html>

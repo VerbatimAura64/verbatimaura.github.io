@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Objects and Images</title>
+		<link type="text" rel="stylesheet" href="/~walonzo/style/stylesheet.css" />
+		<style>
+		    [type=button] {
+				width:250px;
+			}
+			.right {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.left {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+			.center {
+				float:left;
+				width:250px;
+				padding:20px;
+			}
+		</style>
+		<script>
+			/* When the user clicks on the button,
+			toggle between hiding and showing the dropdown content */
+			function myFunction () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			function myFunction1 () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			function myFunction2 () {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+			/* Close the dropdown menu if the user clicks outside of it */
+			window.oncllick = function(event) {
+				if (!event.target.matches('.droptbtn')) {
+					
+					var dropdowns = document.getElementByClassName ("dropdown-content");
+					var i;
+					for (i = 0; i < dropdowns.length; i++) {
+						var openDropdown = dropdowns [i];
+						if (openDropdown.classList.contains('show')) {
+							openDropdown.classList.remove('show');
+						}
+					}
+				}
+			}
+		</script>
+		<script type="text/javascript">
+		function removeChildren(wherefrom) {
+        var parent = document.getElementById(wherefrom);
+        if (parent) {
+          while (parent.hasChildNodes())
+            parent.removeChild(parent.lastChild);
+        }
+      }
+      var aircraft = null;
+      function Aircraft(name, year, specs, picture) {
+        this.name = name;
+        this.year = year;
+        this.specs = specs;
+        this.picture = picture;
+      }
+      function showAircraft(aircraft, whereso) {
+        var craft = aircraft;
+        var node = document.getElementById(whereso);
+
+        if (node) {
+          var data = '<h1>' + craft.name + '</h1>';
+              data += '<h2>' + craft.year + '</h2>';
+              data += '<ul type="disc">';
+
+          for (var prop in craft.specs) {
+            var property = prop;
+            var property_value = craft.specs[prop];
+            if (property) property += ':';
+            // var item = "<li> <b>" + property + ":</b> " + property_value;
+            var item = "<li> <b>" + property + "</b> " + property_value;
+            data +=  item;
+          }
+          data += "</ul>";
+          var img = '<p><img src="' + craft.picture +
+                    '" width="200" height="165" border="0"' +
+                    ' /></p>';
+          data += img;
+          node.innerHTML = data;
+        }
+      }
+      function hideAircraft1() {
+        var nodes = document.getElementsByTagName('input');
+        for (var n in nodes) {
+          if (nodes[n].getAttribute('name') == 'Xbox') {
+            nodes[n].value = 'Xbox';
+            nodes[n].onclick = showAircraft1;
+            break;
+          }
+        }
+        removeChildren('now');
+        return false;
+      }
+      function hideAircraft2() {
+        var nodes = document.getElementsByTagName('input');
+        for (var n in nodes) {
+          if (nodes[n].getAttribute('name') == 'Xbox 360') {
+            nodes[n].value = 'Xbox 360';
+            nodes[n].onclick = showAircraft2;
+            break;
+          }
+        }
+        removeChildren('then');
+        return false;
+      }
+	  function hideAircraft3() {
+		var nodes = document.getElementsByTagName('input');
+		for (var n in nodes) {
+		  if (nodes[n].getAttribute('name') == 'Xbox One') {
+			nodes[n].value = "Xbox One";
+			nodes[n].onclick = showAircraft3
+			break;
+		  }
+		}
+		removeChildren('after');
+		return false;
+	  }
+      function hideAircraft(which) {
+        removeChildren(which);
+      }
+
+      function showAircraft1() {
+        var nodes = document.getElementsByTagName('input');
+        for (var n in nodes) {
+          if (nodes[n].getAttribute('name') == 'Xbox') {
+            nodes[n].value = 'Hide';
+            nodes[n].onclick = hideAircraft1;
+            break;
+          }
+        }
+        var name = "Xbox";
+        var year = "2001";
+        var specs = {
+           'release date': 'November 15, 2001',
+           'unit cost': 'About $60',
+           'color': 'Black with green logo',
+		   '': 'sixth-generation of gaming'
+        };
+        var plane = new Aircraft(name, year, specs, '/~walonzo/images/xbox.jpg');
+        showAircraft(plane, 'now');
+      }
+
+      function showAircraft2() {
+        var nodes = document.getElementsByTagName('input');
+        for (var n in nodes) {
+          if (nodes[n].getAttribute('name') == 'Xbox 360') {
+            nodes[n].value = 'Hide';
+            nodes[n].onclick = hideAircraft2;
+            break;
+          }
+        }
+        var name = "Xbox 360";
+        var year = "2005";
+        var specs = {
+           'release date': 'November 22, 2005',
+           'unit cost': '$100 at GameStop, Best Buy, Amazon.com',
+		   'color': 'Black or White (Special Editions available)',
+           '': 'seventh-generation of gaming'
+        };
+        var plane = new Aircraft(name, year, specs, '/~walonzo/images/xbox360.jpg');
+        showAircraft(plane, 'then');
+      }
+	  function showAircraft3 () {
+		var nodes = document.getElementsByTagName ('input');
+		for (var n in nodes) {
+			if (nodes[n].getAttribute('name') == 'Xbox One'){
+			  nodes[n].value = 'Hide';
+			  nodes[n].onclick = hideAircraft3;
+			  break;
+			}
+	  }
+	  var name= "Xbox One";
+	  var year = "2013";
+	  var specs = {
+		'released': 'November 22, 2013',
+		'unit cost': '$350 at GameStop, Best Buy, Amazon.com',
+		'color': 'Black (Special Editions available)',
+		'':'eighth-generation of gaming'
+		};
+	  var plane = new Aircraft(name, year, specs, '/~walonzo/images/xbone.jpg');
+	  showAircraft(plane, 'after');
+	  }
+	
+    </script>
+	</head>
+	<body>
+		<div class="navbar">
+			<li> <div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/">Home</a></button>
+					<div id="myDropdown" class="dropdown-content">
+						<a href="/~walonzo">Home</a>
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/hello.html">Hello World!</a>
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+						<a href="/~walonzo/testing/test.html">Testing</a>
+						<a href="/~walonzo/interactive_story/info.html">Name</a>
+					</div>
+				</div>
+			</li>
+			<li><div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/coursework">Coursework</a></button>
+					<div id="myDropdown1" class="dropdown-content">
+						<a href="/~walonzo/coursework/index.html">Coursework</a>
+						<a href="/~walonzo/coursework/isc150/index.html">ISC 150</a>
+						<a href="/~walonzo/coursework/isc110/index.html">ISC 110</a>
+					</div>
+				</div>
+			</li>
+			<li> <div class="dropdown">
+					<button onclick="http://www.cs.oswego.edu/~walonzo/" class="dropbtn"><a href="/~walonzo/interactive_story/">Creative Work</a></button>
+					<div id="myDropdown2" class="dropdown-content">
+						<a href="/~walonzo/interactive_story/index.html">Creative Work</a>
+					</div>
+				</div>
+			</li>
+		</div>
+		<hr>
+		<h1>Comparison of Xbox Consoles &mdash; origins, then, and now.</h1>
+			<p>
+			When discussing advances in technology, one might analyze the performance
+			gains in relation to other aspects of these advances.
+			</p>
+		<form>
+			<table>
+				<tr><td>
+					<input type="button" name="Xbox" value="Xbox"
+							onclick="showAircraft1()"
+					/>
+				</td><td>
+					<input type="button" name="Xbox 360" value="Xbox 360"
+							onclick="showAircraft2()"
+					/>
+				</td><td>
+					<input type="button" name="Xbox One" value="Xbox One"
+							onclick="showAircraft3 ()"
+					/>
+				</td></tr>
+			</table>
+		</form>
+		<div id="now" class="left">
+		</div>
+		<div id="then" class="right">
+		</div>
+		<div id="after" class="center">
+		</div>
+	</body>
+</html>
