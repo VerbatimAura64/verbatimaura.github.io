@@ -132,6 +132,22 @@ h1 {
 		size: 24px;
 }
 
+nav {
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 3rem;
+    background: rgba(14, 14, 15, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #0e0e0f;
@@ -172,7 +188,6 @@ h1 {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
     background-color: #7d8e3e;
