@@ -487,10 +487,70 @@ h2 {
     color: var(--accent);
 }
 
+#cs-hero {
+    padding: 10rem 4rem 6rem;
+    background: var(--bg);
+}
 
+.cs-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
+.cs-back {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    display:block;
+    margin-bottom: 2rem;
+    transition:color .2s;
+}
 
+.cs-back:hover {
+    color: var(--accent);
+}
 
+#cs-hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.cs-subtitle {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 55ch;
+    margin-bottom: 3rem;
+    font-style: italic;
+}
+
+.cs-meta {
+    display: flex;
+    gap:3rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+}
+
+.cs-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap:.3rem;
+}
+
+.cs-meta-label {
+    font-family: var(--font-mono);
+    font-size: .65rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.cs-meta-item span:last-child{
+    font-size: .95rem;
+    color:var(--text)
+}
 
 
 

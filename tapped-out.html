@@ -1,0 +1,106 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homepage</title>
+	<link rel="stylesheet" href="/style/stylesheet.css"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction1() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+}
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+}
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+</head>
+<body>
+	<nav>
+		<a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+		<ul class ="nav-links"></ul>
+
+
+	<div class="navbar">
+		<li> <div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn"><a href="/index.html">Home</a></button>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="/index.html">Home</a>
+					<a href="/coursework/index.html">Coursework</a>
+					<a href="/hello.html">Hello World!</a>
+					<a href="/interactive_story/index.html">Creative Work</a>
+					<a href="/testing/test.html">Testing</a>
+					<a href="/interactive_story/info.html">Name</a>
+				</div>
+			</div>
+		<li><div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn"><a href="/coursework/index.html">Coursework</a></button>
+				<div id="myDropdown1" class="dropdown-content">
+					<a href="/coursework/index.html">Coursework</a>
+					<a href="/coursework/isc150/index.html">ISC 150</a>
+					<a href="/coursework/isc110/index.html">ISC 110</a>
+				</div>
+			</div>
+		</li>
+		<li> <div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn"><a href="/interactive_story/index.html">Creative Work</a></button>
+				<div id="myDropdown2" class="dropdown-content">
+					<a href="/interactive_story/index.html">Creative Work</a>
+				</div>
+			</div>
+		</li>
+	</div>
+	</nav>
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>Tapped Out</h1>
+            <p class="cs-subtitle"> Reverse engineering a classic - a bartending frog, 
+                                    very thirsty weirdos, and my first deep dive into 2D</p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Engine</span>
+                    <span>Unity</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Language</span>
+                    <span>C#</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>Solo Project</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Shipped</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
