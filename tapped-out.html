@@ -104,3 +104,109 @@ window.onclick = function(event) {
 
         </div>
     </section>
+
+	<section id="cs-overview">
+		<div class="cs-content-inner">
+			<span class="section-tag">Overview</span>
+			<p>Tapped Out is my latest shipped title, where you play as a 
+    bartending frog in a dive bar with very thirsty customers. My goal 
+    was to reverse engineer and stylize in my own way the popular 2D 
+    8-bit game Tapper. I wanted a game that was going to challenge my 
+    skills — I had only worked previously on 3D projects, and I 
+    discovered Tapper on a date night with my wife at an arcade bar. 
+    I was enthralled. It felt like all the pieces of the whole game 
+    just made sense, and I could see myself remaking it in a new style 
+    for PC or mobile.</p>
+		</div>
+	</section>
+
+	<section id="cs-challenge">
+		<div class="cs-content-inner">
+			<span class="section-tag">The Challenge</span>
+			<p>The real challenge was filling the bar with customers and keeping 
+    it filled. That meant creating behavior states — thirsty, waiting, 
+    drinking, and drunk. Thirsty customers would come in and take a seat 
+    if one was available at any of the five bars. Waiting customers would 
+    advance toward the bartender, and the player had to serve them to hold 
+    them back. The trick was that once a customer inched forward, new 
+    thirsty customers would spot the empty seat and move in. Drunk customers 
+    sometimes wouldn't leave and would hog the beers sliding down the bar — 
+    which I suppose is a real life problem too, and not a bug.</p>
+			<div class="cs-callout">
+				<span class="cs-callout-label">Core Problem</span>
+				<p>Each behavior state didn't just affect the NPC — it affected the 
+      				environment, which in turn dictated every other customer. On top of 
+      				that, I hadn't worked with tilemapping or grid systems in 2D before.</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="cs-solution">
+		<div class="cs-content-inner">
+			<span class="section-tag">My Solution</span>
+			<p>My solution for the chair problem was to have each customer take 
+    their chair with them as they moved. An NPC can't sit in a chair if 
+    another NPC's butt is dragging it along. But this created a new problem 
+    — the chair was now halfway down the bar, meaning customers could reach 
+    the end much faster. So after a customer entered the drunk state, their 
+    chair would reset to its origin after the NPC was deleted. Once chairs 
+    reset and references cleared, we had a rotating cycle of new customers 
+    coming in to drink.</p>
+			<p>Each NPC's update functions drove their state through a clean
+				set of booleans:</p>
+			<div class="cs-code">
+				<pre>void Update() {
+					EndGame();
+					IsWaiting();
+					IsDrinking();
+					FinishedDrinking();
+					IsLeaving();
+				}
+				</pre>
+			</div>
+			<p>As for tilemapping — it clicked when I started thinking about 2D 
+    			in 3D terms. Sorting layers just meant imagining which objects were 
+    			closest to the camera and which were farthest. Working in 2D also gave 
+    			me a much better grasp on memory optimization. Out of sight, out of 
+    			my CPU.</p>
+		</div>
+	</section>
+
+	<section id="cs-retrospective">
+		<div class="cs-content-inner">
+			<span class="section-tag">Retrospective</span>
+		<p>What worked, and what I'd do differently.</p>
+		<div class="cs-retro-grid">
+			<div class="cs-retro-card cs-retro-good">
+				<span class="cs-retro-label">What Worked</span>
+				<ul>
+					<li>Single bar mechanic — no player movement needed,
+						clean readable play gameplay loop
+					</li>
+					<li>Player movement animation across multiple bars — 
+						proud of how that came together.
+					</li>
+				</ul>
+			</div>
+			<div class="cs-retro-card cs-retro-change">
+				<span class="cs-retro-label">What I'd Change</span>
+				<ul>
+					<li>Bar cycling — players should loop through bars
+						rather than backtrack constantly
+					</li>
+					<li>Collision detection on beer sliding — occasional
+						failed collisions meant beers weren't being deleted properly.
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</section>
+
+	<section id="cs-footer">
+		<div class="cs-content-inner">
+			<a href="https://harborviewgames.itch.io/tapped-out" 
+			class="btn btn-primary">Play Tapped Out on itch.io →</a>
+			<a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+		</div>
+	</section>
