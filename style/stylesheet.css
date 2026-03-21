@@ -547,17 +547,19 @@ h2 {
     text-transform: uppercase;
 }
 
-.cs-meta-item span:last-child{
+.cs-meta-item span:last-child {
     font-size: .95rem;
     color:var(--text)
 }
 
-#cs-overview, #cs-solution{
+#cs-overview, 
+#cs-solution{
     padding: 5rem 4rem;
     background: var(--bg);
 }
 
-#cs-challenge, #cs-retrospective {
+#cs-challenge, 
+#cs-retrospective {
     padding: 5rem 4rem;
     background: var(--surface);
 }
@@ -575,7 +577,7 @@ h2 {
     margin: 0 auto;
 }
 
-cs.cs-content-inner p {
+.cs-content-inner p {
     color: var(--muted);
     line-height: 1.85;
     font-size: .95rem;
@@ -584,7 +586,7 @@ cs.cs-content-inner p {
 
 .cs-callout {
     border-left: 3px solid var(--accent);
-    padding: 1.25 rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     background: var(--bg);
     margin-top: 2rem;
 }
@@ -613,7 +615,7 @@ cs.cs-content-inner p {
     overflow-x: auto;
 }
 
-.cd-code pre {
+.cs-code pre {
     font-family: var(--font-mono);
     font-size: .85rem;
     color:var(--muted);
@@ -621,12 +623,58 @@ cs.cs-content-inner p {
     margin: 0;
 }
 
+.cs-retro-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1px;
+    background: var(--border);
+    border:1px solid var(--border)
+}
 
+.cs-retro-card {
+    background:var(--bg);
+    padding: 2rem;
+}
 
+.cs-retro-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
 
+.cs-retro-good .cs-retro-label{
+color: var(--accent);
+}
 
+.cs-retro-change .cs-retro-label{
+    color: var(--muted);
+}
 
+.cs-retro-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0;
+}
 
+.cs-retro-card li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.cs-retro-card li::before {
+    content:'>';
+    position:absolute;
+    left: 0;
+    color:var(--accent);
+}
 
 
 
