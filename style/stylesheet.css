@@ -16,8 +16,32 @@
 }
 
 .thumbnail a {
-    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: auto;
+    transition: opacity .2s;
 }
+
+.tasks a{
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: auto;
+    transition: opacity .2s;
+}
+
+.homework a{
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: auto;
+    transition: opacity .2s;
+}
+
 body {
 		background-color: var(--bg);
         color: var(--text);
@@ -106,9 +130,6 @@ h1 {
     background: var(--muted);
     color: var(--text);
 }
-
-
-
 
 .navbar  {
 		color: var(--accent);
