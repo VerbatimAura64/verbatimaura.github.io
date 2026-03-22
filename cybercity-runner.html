@@ -1,0 +1,199 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CyberCity Runner - William Alonzo</title>
+	<link rel="stylesheet" href="/style/stylesheet.css"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		
+
+
+</head>
+<body>
+	<nav>
+		<a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+		<ul class ="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+                    <li><a href="/tapped-out.html">Tapped Out</a></li>
+                    <li><a href="/cybercity-runner.html">Cybercity Runner</a></li>
+                    <li><a href="/tmmpob.html">TMMOPB</a></li>
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>CyberCity Runner</h1>
+            <p class="cs-subtitle"> The project that rekindled everything — relearning the basics, 
+									fighting off an alien invasion, and shipping 
+									something that actually ran at 60 FPS.</p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Engine</span>
+                    <span>Unity</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Language</span>
+                    <span>C#</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>Solo Project</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Shipped</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+	<section id="cs-overview">
+		<div class="cs-content-inner">
+			<span class="section-tag">Overview</span>
+			<p>Cybercity Runner is the first game I officially shipped where you play 
+				as an astronaut fighting off an alien invasion while avoiding spikes 
+				hurled at you in the streets of Cybercity. The object with Cybercity
+				 Runner was to see if I could pick up where I left off with regards 
+				 to sharpening my tools for game development. I wanted to work on NPC 
+				 instantiation as well as obstacle and platform generation. 
+				 A score-attack infinite runner built to prove I could still ship 
+				 something.</p>
+		</div>
+	</section>
+
+	<section id="cs-challenge">
+		<div class="cs-content-inner">
+			<span class="section-tag">The Challenge</span>
+			<p>The challenge with Cybercity Runner is that I had taken a significant 
+				pause when it came to developing from scratch again. I wasn’t sure 
+				of my scope, or the image of what a finished game might look like to me.
+				 I was struggling to remember the basics of Object oriented programming
+				  as well as creating simple functions that helped move the characters 
+				  or instantiate Enemies and obstacles at alternating times. A city of 
+				  the future under threat of alien invasion isn’t that dangerous if all 
+				  the aliens spawn right on top of each other and don’t advance across 
+				  your screen. All hope could be abandoned because shooting the aliens 
+				  didn’t evaporate them since their colliders weren’t detecting collision!</p>
+			<div class="cs-callout">
+				<span class="cs-callout-label">Core Problem</span>
+				<p>At first collision would happen to fast and the ray gun would just shoot itself.
+					Then, when the player wasn't shooting themself, collision wouldn't detect 
+					an enemy, but enemies could sure detect the player.
+				 </p>
+			</div>
+		</div>
+	</section>
+
+	<section id="cs-solution">
+		<div class="cs-content-inner">
+			<span class="section-tag">My Solution</span>
+			<p>The solution was unglamorous but honest: READING! API documentation, 
+				Unity forums, old projects. Relearning how to flip a sprite based on
+				 input direction, how to check player movement each frame, how to space 
+				 enemy spawns so aliens advanced instead of stacking. Most of it was 
+				 just about 12 lines of code if you don’t account for readability or 
+				 documenting what I was trying to do.</p>
+			<p>Each NPC's update functions drove their state through a clean
+				set of booleans:</p>
+			<div class="cs-code">
+				<pre>void Update(){
+	//
+	float horizontalInput = Input.GetAxis("Horizontal");
+	//This is how we move left and right
+	body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
+	//This will flip the sprite based on the input direction we get
+	if (horizontalInput > 0.01f)
+		transform.localScale = Vector3.one;
+	if (horizontalInput < -0.01f)
+		transform.localScale = new Vector3(-1, 1, 1);
+	//Allows Jumping
+	if (Input.GetKey(KeyCode.Space) && grounded)
+		Jump();
+	if (Input.GetKey(KeyCode.Tab))
+	{
+		GameOverScreen.PauseScreen();
+	}
+	//Set animator parameter
+	anim.SetBool("run", horizontalInput != 0);
+	anim.SetBool("grounded", grounded);
+	//Debug.Log(grounded);
+}
+</pre>
+			</div>
+			<p>So as frustrating as it was to see the aliens invulnerable to my ray gun 
+				but crashing with the player and swallowing him whole, once collision 
+				detection clicked, vengeance was mine. I had understood how Unity's 
+				collider system expected to be set up — a small configuration issue 
+				that had made the ray gun feel completely broken was serving me the 
+				revenge I wanted. The 60 FPS target came last, through learning how to
+				 manage object pooling and script efficiency so the game wasn't creating
+				  and destroying objects constantly. Recycling the same shot, the same 
+				  alien, the same obstacle constantly meant the game could run smoother 
+				  without having to always forget and remember new references. The great
+				   thing about object pooling is that it can even be applied to tactics 
+				   a junior developer like myself is learning, as in reusing similar 
+				   references to customers when you need a chair to reset in a drinking
+				    at a bar simulator called Tapped Out! When you keep the reference to
+					 an idea, you can use it again without having to rebuild an entire 
+					 system again to solve similar problems.</p>
+		</div>
+	</section>
+
+	<section id="cs-retrospective">
+		<div class="cs-content-inner">
+			<span class="section-tag">Retrospective</span>
+		<p>What worked, and what I'd do differently.</p>
+		<div class="cs-retro-grid">
+			<div class="cs-retro-card cs-retro-good">
+				<span class="cs-retro-label">What Worked</span>
+				<ul>
+					<li>Sprite direction manipulation and animation
+						 — understanding frame-to-frame motion was immediately rewarding
+					</li>
+					<li>Object pooling for shots, aliens, and
+						 obstacles — recycling references kept the game running smoothly
+					</li>
+				</ul>
+			</div>
+			<div class="cs-retro-card cs-retro-change">
+				<span class="cs-retro-label">What I'd Change</span>
+				<ul>
+					<li>Spike instantiation — 
+						spawn them along platforms as they generate rather than 
+						shooting them out randomly
+					</li>
+					<li>Platform spacing — wider gaps would 
+						create more meaningful risk for players
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</section>
+
+	<section id="cs-footer">
+		<div class="cs-content-inner">
+			<a href="https://harborviewgames.itch.io/cybercity-runner" 
+			class="btn btn-primary">Play CyberCity Runner on itch.io →</a>
+			<a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+		</div>
+	</section>
