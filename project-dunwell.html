@@ -43,8 +43,7 @@
             <a href="./index.html" class="cs-back">← Back to Portfolio</a>
             <span class="section-tag">Case Study</span>
             <h1>Project Dunwell</h1>
-            <p class="cs-subtitle"> Designing my own murder, solving it, and 
-									making sure I squash all bugs in my new Narrative story.</p>
+            <p class="cs-subtitle"> A neo-noir murder mystery. One suspect. Nine clues. Three endings. Built in Unity + Ink.</p>
             <div class="cs-meta">
                 <div class="cs-meta-item">
                     <span class="cs-meta-label">Engine</span>
@@ -95,10 +94,13 @@
 			</p>
 			<div class="cs-callout">
 				<span class="cs-callout-label">Core Problem</span>
-				<p>Branching dialogue, and possible choices present 
-					different opporunities to explore how the story could pan out. I think my greatest
-					inspiration for what I wanted to do came from Detroit: Become Human. For now, I've only 
-					designed three endings, but one day I'll design 85 distinct endings like Quantic Dream.</p>
+				<p>Dunwell needed two systems to stay completely decoupled: 
+					Unity owning the world — collision, player state, clue tracking — and Ink owning all narrative output. 
+					The challenge was making them talk to each other without either one knowing too much about the other.
+					Specifically: how do you fire a narrative knot from a collision trigger without interrupting story state? 
+					How do you pass game events into Ink without hardcoding them? And how do you suppress the blank lines Ink 
+					outputs between logic-only lines so nothing bleeds into the UI? These aren't theoretical problems. 
+					They blocked progress until the architecture was right.</p>
 			</div>
 		</div>
 	</section>
@@ -113,8 +115,12 @@
 				If I fire this knot, based on this object's script variable, and only when I collide with this clue, should
 				this line of the story appear.
 			</p>
-			<p>My Inkbridge was built into my GM, 
-				handling each Ink tag and working to keep track of the game state:</p>
+			<p>The answer was building an InkBridge right into my GameManager.cs — a
+				 custom messenger layer sitting between Unity and Ink. 
+				 Unity calls knots by name when triggers fire. Ink delivers text and tags. 
+				 The game manager reads those tags and fires Unity events in response: 
+				 updating UI, triggering fades, locking the case board during critical beats, 
+				 enabling the building manager encounter. Neither system reaches into the other directly.</p>
 			<div class="cs-code">
 				<pre>public void AdvanceDialogue()
 {
@@ -186,12 +192,19 @@
 			<div class="cs-retro-card cs-retro-good">
 				<span class="cs-retro-label">What Worked</span>
 				<ul>
-					<li>Clue Inspection I think turned out fantastic. Items could be picked
-						up and interacted with, and things that wouldn't be didn't move from their place.
+					<li>Every physical clue in the scene is inspectable. 
+						Walking up to one and interacting switches from third-person exploration to a first-person inspection camera,
+						 you're looking through Marcus's eyes, rotating the object in world space with your mouse.
 					</li>
 					<li>Dialogue box with type writer effect so the story always comes in like a transmission
 						in that scientific style and design.
 					</li>
+					<li>Connecting clues on the case board isn't cosmetic — it fires narrative. 
+						Each connection is backed by a dictionary keyed on a sorted clue-pair string (so "clue_2_clue_5" and "clue_5_clue_2" resolve to the same entry), which maps to a unique Ink knot. 
+						Draw the line, Marcus reacts.</li>
+					<li>The system saves the object's original transform on entry and restores it exactly on exit, so nothing stays displaced after Marcus puts it down. 
+						The camera swap is seamless: no loading, no UI transition, just a perspective shift that makes examination feel deliberate rather than mechanical. 
+						It's a small thing, but it does a lot for making Marcus feel like someone who actually looks at things.</li>
 				</ul>
 			</div>
 			<div class="cs-retro-card cs-retro-change">
@@ -205,6 +218,11 @@
 						gamefeel instead of just empty streets. Could use better Nav Agent 
 						for building manager too, but he's a good start for things to come.
 					</li>
+					<li>The bluff mechanic uses a single inverted boolean — it defaults to true so players who never encounter the manager don't accidentally trigger Ending B. 
+						It works, but it's fragile. The cleaner version is two explicit flags: bluffAttempted and bluffFailed. That's the first refactor on the post-ship list.</li>
+					<li>The case board spline is hardcoded to 1920px width. 
+						It holds up on standard displays but breaks at other resolutions. 
+						Anchoring the spline endpoints to the canvas or switching to a layout group fixes it properly.</li>
 				</ul>
 			</div>
 		</div>
