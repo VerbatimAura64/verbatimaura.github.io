@@ -74,13 +74,14 @@
 			<span class="section-tag">Overview</span>
 			<p>Toxic Piracy takes us to the high seas where the player must
 				collect treasure, battle pirates, and cleanse the waters of 
-				the patrolling toxic ships. With a deadline of 12 days to build
-				from scratch, with Toxic Piracy I wanted to do a blend of bringing 
-				a 3D world into a 2D space. The Made To Be Played Jam had a central theme 
-				of toxic, and as devs the concept of our submissions could be however we interpretated.
-				Some jammers went with Toxicity levels and fighting green goo, others went with
-				intoxication like drinking. I wanted something that would challenge you to go beyond the
-				toxic danger, something you could replay quickly but still get something new each time.
+				the patrolling toxic ships. A 3D world with a 2D view of it,
+				helped build a contrast of an arcade feeling with the weight of true 
+				nautical battles. With a deadline of 12 days to build
+				from scratch, and The Made To Be Played Jam's central theme 
+				of toxic gave me a tight scope and an exact direction. As devs, the concept 
+				of our submissions could be however we interpreted. I wanted something that 
+				would challenge you to go beyond the toxic danger, something you could replay 
+				quickly but still get something new each time.
 			</p>
 		</div>
 	</section>
@@ -88,21 +89,19 @@
 	<section id="cs-challenge">
 		<div class="cs-content-inner">
 			<span class="section-tag">The Challenge</span>
-			<p>The challenge aside from crunch time was getting the ships to
-				behave the way I was imagining how a real ship would. Taking inspiration
-				from Pirates of the Carribean, I wanted those big ship battles where the odds 
-				looked stacked but someway, there's a way out fighting. I wanted to tackle that 
-				replayability and challenge you could get each round from random generation. I needed
-				the ship to feel like it carried its weight in the water, and that if you crashed into
-				an island or rammed an enemy, you'd see that reprecussion. For the ships out of my 
-				control, it became a matter of figuring out how to know which way to turn, what 
-				obstacles to avoid, how to shoot the player, and then get back into the chase.</p>
+			<p>The challenge was getting the ships to behave the way I was imagining how a 
+				real ship would. Taking inspiration from Pirates of the Caribbean, I wanted 
+				those big ship battles where the odds looked stacked but there was always a way to
+				fight out of it. I wanted to tackle that replayability and challenge you could get 
+				each round from random generation. I needed the ship to feel like it carried its 
+				weight in the water, and that if you crashed into an island or rammed an enemy, 
+				you'd see that repercussion. For the ships out of my control, it became a matter 
+				of figuring out how to know which way to turn, what obstacles to avoid, how to shoot 
+				the player, and then get back into the chase.</p>
 			<div class="cs-callout">
 				<span class="cs-callout-label">Core Problem</span>
-				<p>Ship feel, enemy regeneration and randomization, enemy targeting all became central
-					to how the game would play. Having the ship drift in the water, ignoring negative input,
-					and making sure the feel was truly nautical became a principal mechanic I wrangled with 
-					for the first time.</p>
+				<p>Delivering that ship feel needed to be real, but how could I do it without taking away
+					the arcade cycle. </p>
 			</div>
 		</div>
 	</section>
@@ -111,15 +110,15 @@
 		<div class="cs-content-inner">
 			<span class="section-tag">My Solution</span>
 			<p>Something I discovered with this project which has inspired a new line of thinking for future projects
-				is Vector 3 Dots and contact points. First, using dots to determine where an object is 
+				is dot products and contact points. First, using dots to determine where an object is 
 				relative to another, or in this case whether the player was closer to an enemy's starboard 
 				or port side. Getting the direction to target by subtracting the player's position and the 
-				enemy's position, then calculating the broadside directions to see which dot product is closer to 1/-1
+				enemy's position, then calculating the broadside directions to see which dot product is closer to 1
 				helped determine where the least amount of rotation would come from.
+				Upon deciding which side is closer, set the cannon to fire appropriately and call FireCannon() on said cannon to fire.
+				All of this behavior is primarily gated by whether the game 
+				is over or not, then whether the enemy still has health left to pursue.
 			</p>
-			<p>Using the product of the Enemy's forward position 
-				and the direction of the broadsides helped the enemy 
-				AI rotate it's rigidbody accordingly.</p>
 			<div class="cs-code">
 				<pre>
 if (!broadsideCalc)
@@ -144,15 +143,15 @@ if (!broadsideCalc)
 }
 				</pre>
 			</div>
-			<p>Upon deciding which side is closer, set the cannon to fire 
-				appropriately and call FireCannon() on said cannon to fire.
-				All of this behavior is primrarily gated by whether the game 
-				is over or not, then whether the enemy still has health left to pursue.
+			<p>
 				For the player, getting the main ship to feel like there was weight
 				to the boat and not just that arcade feel, I implemented a drift and bounce
 				float that could either send the player back from hitting an enemy, or a 
-				gentle glide in the ocean, bobbing to an eventual stop.
-
+				gentle glide in the ocean, bobbing to an eventual stop. For that weight, I designed
+				a ramp and decay system that as the player held onto input, I'd store a max ramp acceleration
+				that increased over time that once the player let go, would decay at a similar rate to let the
+				ship drift. Players would lose that forward drift acceleration, and some health, with an 
+				instant collision against an island's kinematic rigidbody.
 			</p>
 		</div>
 	</section>
@@ -171,6 +170,10 @@ if (!broadsideCalc)
 					<li>Treasure and Hazard regeneration in the event they spawned in
 						or around an island through collision detection.
 					</li>
+					<li>Forward direction now only happens with direct input. Debugging why steerSpeed 
+						was still driving the ship forward or sometimes erratically when idle took
+						an understanding of how the decay system was really meant to work.
+					</li>
 				</ul>
 			</div>
 			<div class="cs-retro-card cs-retro-change">
@@ -181,6 +184,9 @@ if (!broadsideCalc)
 					</li>
 					<li>Prevent nearby spawning of enemies, islands, treasures and hazards within player 
 						view or on an area too close to the player.
+					</li>
+					<li>Generate new and bigger pirates that would vary in health and fire rate to further
+						improve on different routines of gameplay.
 					</li>
 				</ul>
 			</div>
