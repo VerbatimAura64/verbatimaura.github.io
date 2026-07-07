@@ -122,26 +122,26 @@
 				AI rotate it's rigidbody accordingly.</p>
 			<div class="cs-code">
 				<pre>
-		if (!broadsideCalc)
-		{
-    		dirToTarget = Vector3.Normalize(player.transform.position - agent.transform.position);
-    		portCandid = Quaternion.Euler(0, 90f, 0) * dirToTarget;
-    		starboardCandid = Quaternion.Euler(0, -90f, 0) * dirToTarget;
-    		portDot = Vector3.Dot(agent.transform.forward, portCandid);
-    		starbDot = Vector3.Dot(agent.transform.forward, starboardCandid);
-    		if (portDot > starbDot)
-    		{
-        		targetBroadsideRot = Quaternion.LookRotation(portCandid);
-        		broadsideCalc = true;
-       			cannonToFire = leftCannon;
-    		}
-    		else
-    		{
-        		targetBroadsideRot = Quaternion.LookRotation(starboardCandid);
-        		broadsideCalc = true;
-        		cannonToFire = rightCannon;
-    		}
-		}
+if (!broadsideCalc)
+{
+	dirToTarget = Vector3.Normalize(player.transform.position - agent.transform.position);
+    portCandid = Quaternion.Euler(0, 90f, 0) * dirToTarget;
+    starboardCandid = Quaternion.Euler(0, -90f, 0) * dirToTarget;
+    portDot = Vector3.Dot(agent.transform.forward, portCandid);
+    starbDot = Vector3.Dot(agent.transform.forward, starboardCandid);
+    if (portDot > starbDot)
+    {
+    	targetBroadsideRot = Quaternion.LookRotation(portCandid);
+    	broadsideCalc = true;
+       	cannonToFire = leftCannon;
+    }
+    else
+    {
+    	targetBroadsideRot = Quaternion.LookRotation(starboardCandid);
+    	broadsideCalc = true;
+    	cannonToFire = rightCannon;
+    }
+}
 				</pre>
 			</div>
 			<p>Upon deciding which side is closer, set the cannon to fire 
