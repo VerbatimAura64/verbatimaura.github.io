@@ -1,0 +1,156 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>On Display - William Alonzo</title>
+	<link rel="stylesheet" href="/style/stylesheet.css"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		
+
+
+</head>
+<body>
+	<nav>
+		<a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+		<ul class ="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+					<li><a href="/Resume.pdf">Resume</a></li>
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+					<li><a href="/toxic-piracy.html">Toxic Piracy</a></li>
+					<li><a href="/project-dunwell.html">Project Dunwell</a></li>
+                    <li><a href="/tapped-out.html">Tapped Out</a></li>
+					
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>On Display</h1>
+            <p class="cs-subtitle"> Dusting off one of my earliest Unity Projects:
+                a VR art gallery I built in 2017 for the Oculus Rift.
+			</p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Engine</span>
+                    <span>Unity</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Target</span>
+                    <span>Oculus Rift</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Tools</span>
+                    <span>Blender</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Delivered 2017</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+	<section id="cs-overview">
+		<div class="cs-content-inner">
+			<span class="section-tag">Overview</span>
+			<p>On Display is a VR museum experience built for the Oculus Rift. The player walks the halls of a 
+                curated gallery space featuring ~23 works from a collaborating mixed-media artist — paintings, 
+                drawings, sculptures, skateboards, video installations, and handbuilt physical objects. Each 
+                piece was translated from real-world art into a digital exhibit, with interactive pieces the 
+                player can pick up and inspect using VR controllers.
+			</p>
+		</div>
+	</section>
+
+	<section id="cs-challenge">
+		<div class="cs-content-inner">
+			<span class="section-tag">The Challenge</span>
+			<p>Translating physical artwork into a VR space isn't a scanning job. Each piece had different 
+                material properties — painted wood, glossy ceramic, matte canvas, reflective surfaces, video playback 
+                — and needed to read correctly under VR lighting without looking flat or fake. The handbuilt physical 
+                objects needed to be modeled in Blender from reference and brought into Unity with materials that matched 
+                the originals. The gallery itself needed to feel like a real space worth walking through, not a skybox 
+                with floating frames.</p>
+		</div>
+	</section>
+
+	<section id="cs-solution">
+		<div class="cs-content-inner">
+			<span class="section-tag">My Solution</span>
+			<p>Built a museum layout with distinct halls and showcase areas, each designed around the type of work being 
+                displayed. Paintings and drawings are wall-mounted with appropriate lighting. Physical objects like 
+                skateboards and a key sit on display cases and can be grabbed and inspected using Oculus Touch controllers. 
+                Video installations play in-world on dedicated screens.
+            </p>
+            <p> Material and shader work was critical — each piece needed a material setup in Unity that matched the 
+                real-world surface: matte for canvas, gloss for ceramics, reflective for display cases, emissive for 
+                video screens. Custom models were built in Blender from the artist's physical originals and imported 
+                into Unity with proper UV mapping and material assignment.
+            </p>
+            <p>Player locomotion uses room-scale VR movement with controller-based navigation for traversing the full gallery space.
+			</p>
+			
+		</div>
+	</section>
+
+	<section id="cs-retrospective">
+		<div class="cs-content-inner">
+			<span class="section-tag">Retrospective</span>
+		<p>What worked, and what I'd do differently.</p>
+		<div class="cs-retro-grid">
+			<div class="cs-retro-card cs-retro-good">
+				<span class="cs-retro-label">What Worked</span>
+				<ul>
+					<li>The grab interaction on physical objects gives the player a reason to 
+                        engage with the space rather than passively walking past everything. 
+                        Picking up a skateboard and turning it over creates a connection to 
+                        the work that wall-mounted art alone doesn't achieve.
+					</li>
+					<li>Material differentiation between pieces sells the variety of the collection. 
+                        A gallery where everything has the same shader feels like a tech demo, not an exhibition.
+					</li>
+					
+				</ul>
+			</div>
+			<div class="cs-retro-card cs-retro-change">
+				<span class="cs-retro-label">What I'd Change</span>
+				<ul>
+					<li>Add gaze-based or proximity-triggered information panels for each piece 
+                        — artist notes, medium, dimensions. The gallery is visually rich but informationally sparse.
+					</li>
+					<li>Implement a guided tour mode with waypoints and audio narration as an alternative to free exploration.
+					</li>
+					<li>Build an interaction for the wall-mounted pieces too — a zoom or spotlight that activates on approach, 
+                        so every piece has some form of player engagement, not just the grabbable ones.
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</section>
+
+	<section id="cs-footer">
+		<div class="cs-content-inner">
+			<a>A huge thanks to the collaborative artist, Catalina Penailillo</a>
+			<a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+		</div>
+	</section>
+    </body>
+</html>
