@@ -74,10 +74,10 @@
 			<span class="section-tag">Overview</span>
 			<p>Project Dunwell is my latest shipped title, designed as a neo-noir sci-fi 
 				murder mystery I built in Unity with Ink handling all the branching dialogue. 
-				You play Marcus Dunwell, not a detective, but an engineer who will find himself 
-				as the prime suspect. Summoned by the victim for Dunwell's history in infrastructure, 
-				each piece of evidence has his name and fingerprints on it, all captured with a 
-				surveillance system he designed.
+				I wanted to tell a story of an unlikely detective solving a murder, and to do that
+				I needed a tool that could help tell it. I chose Ink for the ability to structure branched
+				dialogues and direct script to compiler engine. Project Dunwell was getting Unity and Ink
+				to collaborate.
 </p>
 		</div>
 	</section>
@@ -91,7 +91,7 @@
 				timing, which meant if a clue was discovered, the script would play and I'd need to 
 				recognize where the story had to pick back up from. Then it becomes how do I avoid interruptions,
 				how can I cut blank lines that arise from tagging knots in Ink, and how can I avoid repeating the 
-				same monologue script or line to avoid losing the linear story. Learning Ink was something in of 
+				same monologue script or line to avoid losing the linear story. Learning Ink was something in and of 
 				itself too which included learning its language, the syntax and grammar of how to properly
 				code what I wanted the story to tell. 
 			</p>
@@ -123,11 +123,10 @@
 			<span class="section-tag">My Solution</span>
 			<p>The answer was building an InkBridge right into my GameManager.cs — a custom messenger layer sitting 
 				between Unity and Ink. Working with this new system for dialogue and narrative application, my natural 
-				instinct was to brush up on their documentation. However with this documentation, I found that the tests 
-				I was running in the compiler weren't one hundred percent accurate with what was supposed to be helping 
-				me understand its features. Reiterative tests, gate building in C# with Unity to advance the dialogue 
-				along became my source of truth. If I fire this knot, based on this object's script variable, and 
-				only when I collide with this clue, should this line of the story appear.
+				instinct was to brush up on their documentation. However, I found that the tests I was running in the 
+				compiler weren't fully accurate accurate with what was supposed to be helping me understand its features. 
+				I performed reiterative tests by gate building in C# with Unity to advance the dialogue 
+				along and it quickly became my source of truth. 
 			</p>
 			<p>
 				 Unity calls knots by name when triggers fire. Ink delivers text and tags. 
