@@ -1,0 +1,211 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TMMOPB - William Alonzo</title>
+	<link rel="stylesheet" href="/style/stylesheet.css"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+		
+
+
+</head>
+<body>
+	<nav>
+		<a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+		<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+		<ul class ="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+					<li><a href="/Resume.pdf">Resume</a></li>
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+					<li><a href="/case_study/toxic-piracy.html">Toxic Piracy</a></li>
+					<li><a href="/case_study/project-dunwell.html">Project Dunwell</a></li>
+                    <li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
+					<li><a href="/case_study/job-hunting.html">Job Hunt</a></li>
+					
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>Job Hunt Tracker</h1>
+            <p class="cs-subtitle"> 270+ applications, one markdown file, 
+									and the moment a Ctrl-F search stopped being a system.
+			</p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">IDE</span>
+                    <span>IntelliJ</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Language</span>
+                    <span>Java</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Shipped</span>
+                </div>
+				<div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>August 2026, 1 Weekend</span>
+				</div>
+            </div>
+
+        </div>
+    </section>
+
+	<section id="cs-overview">
+		<div class="cs-content-inner">
+			<span class="section-tag">Overview</span>
+			<p>Tracking 270+ job applications across formal ones, cold outreach, freelance proposals, 
+				and bridge income roles in a single markdown file is not for the weary. When I first 
+				started, it worked to see at a glance the current structure I was building. As the file got
+				longer, I was losing the direct ability to make sure I was following up with roles, which
+				 one I had heard back from, which ones were going forward without me. This API replaces 
+				 it with a proper Postgres-backed data model. Easy to query and update instead of hoping a 
+				 Ctrl-F command found what I was looking for.
+			</p>
+		</div>
+	</section>
+
+	<section id="cs-challenge">
+		<div class="cs-content-inner">
+			<span class="section-tag">The Challenge</span>
+			<p>Six weeks into a job search generating dozens of applications a week — formal submissions, 
+				cold outreach, bridge income, follow-ups — a spreadsheet stopped being enough. I needed 
+				something that could enforce structure: an application has a status, a status has valid 
+				transitions, and a follow-up date shouldn't exist floating in a text cell where it's easy to miss.
+
+				</p>
+			<div class="cs-callout">
+				<span class="cs-callout-label">Reasoning</span>
+				<p>I also wanted a reason to build something outside Unity, while dusting off Java skills I 
+					learned while at university. Six years in C# taught me one language's idioms deeply. 
+					Spring Boot forced me to relearn dependency injection, annotation-driven configuration, 
+					and a request lifecycle that has nothing to do with a game loop; while working with 
+					data I actually cared about getting right.
+
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="cs-solution">
+		<div class="cs-content-inner">
+			<span class="section-tag">What It Does</span>
+			<p>The API manages the full lifecycle of a job application: create, read, update, and delete 
+				records across applications, contacts, and follow-up schedules, backed by a relational schema in PostgreSQL.</p>
+			<p>
+				<ul style="padding-left: 40px">
+					<li>Full CRUD across three related entities — applications, companies, and follow-ups — with 
+					foreign key relationships enforced at the database level, not just in application logic.
+					</li>
+					<li>A dedicated PUT endpoint for partial updates. Most of my day-to-day interaction with the 
+					tracker isn't creating new records — it's updating a status, adding a follow-up date, or 
+					noting a rejection. The PUT endpoint exists because the update path needed to be a 
+					first-class citizen, not an afterthought bolted onto POST.
+					</li>
+					<li>Every endpoint tested and validated in Postman before deployment — request bodies, 
+					status codes, and error responses confirmed manually against the live schema before 
+					writing a single line of frontend or client code.
+					</li>
+				</ul>
+			</p>
+			<span class="section-tag">Architecture</span>
+			<p>The application follows a standard layered structure, but "standard" is doing real work here. 
+				Coming from Unity, where a MonoBehaviour can touch anything it has a reference to, the 
+				discipline of a strict repository → service → controller separation was the actual re-learning curve.</p>
+				
+			<div class="cs-code">
+				<pre>Controller  →  handles HTTP requests, delegates to Service, returns responses
+Service     →  owns business logic, calls Repository, never touches HTTP directly
+Repository  →  JPA interface, owns all direct database interaction
+Entity      →  the persisted shape of the data, annotated for JPA/Hibernate</pre> 
+			</div>
+			<p>No layer skips another. The controller never talks to the repository directly, and the 
+				service never constructs an HTTP response. That separation is what makes the PUT endpoint 
+				safe to add without touching anything else — the service method for a partial update lives 
+				next to the service method for a full create, and the controller just routes to the right one.</p>
+			<div class="cs-code">
+				<pre>
+@GetMapping("/{id}")
+    public ResponseEntity<JobApplication> getApplicationById(@PathVariable Long id){
+        return ResponseEntity.of(service.getApplicationById(id));
+    }
+@PostMapping("/bulk")
+    public List<JobApplication> saveAllApplications(@RequestBody List<JobApplication> applications) {
+        return service.saveAllApplications(applications);
+    }
+
+@PutMapping("/{id}")
+    public ResponseEntity<JobApplication> updateApplication(@PathVariable Long id, @RequestBody JobApplication application) {
+        return ResponseEntity.of(service.updateApplication(id, application));
+    }
+
+@DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteApplication(@PathVariable Long id){
+        service.deleteApplication(id);
+        return ResponseEntity.noContent().build();
+    }			</pre>
+			</div>
+		</div>
+	</section>
+
+	<section id="cs-retrospective">
+		<div class="cs-content-inner">
+			<span class="section-tag">Technical Notes to Keep in Mind</span>
+		<p>Update semantics aren't free. JpaRepository.save() will happily insert or update depending on 
+			whether the entity's id is null, which means a naive PUT implementation can silently create 
+			a phantom row instead of failing when the target id doesn't exist. Fixed by checking findById() 
+			first and returning a proper 404 when nothing's there, rather than trusting save() to do the 
+			right thing by default.
+		</p>
+		<p>Local vs. deployed config isn't a single file. Railway's DATABASE_URL comes in Postgres's native 
+			connection-string format (postgresql://user:pass@host:port/db), not the jdbc:postgresql://... 
+			format Spring's datasource expects — so the fix was building the JDBC URL from Railway's individual 
+			PGHOST/PGPORT/PGDATABASE variables instead of trying to use the combined URL directly. Combined with 
+			Spring profiles (application-local.properties for dev, environment variables for prod), this is the 
+			first project where I've had to think seriously about environment separation rather than just "does it run."
+		</p>
+		<p>Migrating between environments is its own small problem. Once local and Railway were both live, syncing data 
+			between them meant writing a short script that pulls from the local API, strips the id field 
+			(so inserts don't collide with existing rows), and re-POSTs to Railway's bulk endpoint — a real, if small, 
+			example of the kind of data-migration tooling that comes up constantly in backend work.
+		</p>
+			<p><span class="section-tag">Why It Matters</span></p>
+		<p> This is the first backend-only, non-Unity project I've shipped end to end — no game engine, 
+			no C#, just Java, Spring, SQL, and a deployed URL. It's also functionally in use: this now 
+			runs my actual job search instead of describing it.
+		</p>
+	</section>
+
+	<section id="cs-footer">
+		<div class="cs-content-inner">
+			<a href="https://truthful-compassion-production.up.railway.app/api/applications" 
+			class="btn btn-primary">Live API →</a>
+			<a href="https://github.com/VerbatimAura64/job-hunt-tracker" 
+			class="btn btn-primary">Check the Repo</a>
+			<a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+			
+		</div>
+	</section>
+
+	<script src="/script.js" defer></script>
+</body>
+</html>

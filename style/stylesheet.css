@@ -319,6 +319,15 @@ nav {
     margin-top: .25rem;
 }
 
+#swe {
+    background: var(--bg);
+    padding: 6rem 4rem;
+}
+
+.swe-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
 #projects {
     background: var(--surface);
@@ -425,7 +434,7 @@ h2 {
 
 #about {
     padding: 6rem 4rem;
-    background: var(--bg);
+    background: var(--surface);
 
 }
 
@@ -477,7 +486,7 @@ h2 {
 
 #contact {
     padding: 6rem 4rem;
-    background: var(--surface);
+    background: var(--bg);
 }
 
 .contact-inner {
@@ -495,7 +504,7 @@ h2 {
 }
 
 .contact-link {
-    background: var(--bg);
+    background: var(--surface);
     padding: 1.25rem 1.5rem;
     display:flex;
     align-items:center;
@@ -507,7 +516,7 @@ h2 {
 }
 
 .contact-link:hover{
-    background: var(--surface)
+    background: var(--bg)
 }
 
 .contact-label{
@@ -522,7 +531,7 @@ h2 {
 
 #easter-egg {
     padding: 6rem 4rem;
-    background: var(--bg);
+    background: var(--surface);
 }
 
 .inner-egg{
