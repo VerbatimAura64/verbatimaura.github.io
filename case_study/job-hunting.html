@@ -139,9 +139,10 @@ Repository  →  JPA interface, owns all direct database interaction
 Entity      →  the persisted shape of the data, annotated for JPA/Hibernate</pre> 
 			</div>
 			<p>No layer skips another. The controller never talks to the repository directly, and the 
-				service never constructs an HTTP response. That separation is what makes the PUT endpoint 
-				safe to add without touching anything else — the service method for a partial update lives 
-				next to the service method for a full create, and the controller just routes to the right one.</p>
+				service never constructs an HTTP response. That separation is what makes the PUT endpoint,
+				as well as the other GET, DELETE, and POST endpoints safe to add without touching anything else 
+				— the service method for a partial update lives next to the service method for a full create, 
+				and the controller just routes to the right one.</p>
 			<div class="cs-code">
 				<pre>
 @GetMapping("/{id}")
@@ -200,7 +201,7 @@ Entity      →  the persisted shape of the data, annotated for JPA/Hibernate</p
 			<a href="https://truthful-compassion-production.up.railway.app/api/applications" 
 			class="btn btn-primary">Live API →</a>
 			<a href="https://github.com/VerbatimAura64/job-hunt-tracker" 
-			class="btn btn-primary">Check the Repo</a>
+			class="btn btn-primary">See the Repo →</a>
 			<a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
 			
 		</div>
