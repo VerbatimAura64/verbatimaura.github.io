@@ -41,14 +41,14 @@
     </nav>
     
     <section id="cs-hero">
-		<!-- Hero image at top of case study -->
+	
 		
         <div class="cs-hero-inner">
             <a href="./index.html" class="cs-back">← Back to Portfolio</a>
             <span class="section-tag">Case Study</span>
             <h1>Case Zero</h1>
-            <p class="cs-subtitle"> Reverse engineering a classic - a bartending frog, 
-                                    very thirsty weirdos, and my first real deep dive into 2D</p>
+            <p class="cs-subtitle"> A one-room murder mystery where the tutorial is the liar. 
+									Built in Unity. Brackey's Game Jam 2026.</p>
             <div class="cs-meta">
                 <div class="cs-meta-item">
                     <span class="cs-meta-label">Engine</span>
@@ -58,13 +58,22 @@
                     <span class="cs-meta-label">Language</span>
                     <span>C#</span>
                 </div>
-                <div class="cs-meta-item">
-                    <span class="cs-meta-label">Timeline</span>
-                    <span>Collaborative Project Aug 22-30 </span>
+                
+				<div class="cs-meta-item">
+                    <span class="cs-meta-label">Team</span>
+                    <span>2 Engineers</span>
+                </div>
+				<div class="cs-meta-item">
+                    <span class="cs-meta-label">Theme</span>
+                    <span>Trust No One</span>
                 </div>
                 <div class="cs-meta-item">
                     <span class="cs-meta-label">Status</span>
                     <span>Shipped</span>
+                </div>
+				<div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>Weeklong Game Jam</span>
                 </div>
             </div>
 
@@ -72,20 +81,19 @@
 		
     </section>
 		<div class="cs-hero-image">
-    		<img src="images/CaseZero.png" alt="Game title shot">
+    		<img src="images/CASE.png" alt="Game title shot">
 		</div>
 	<section id="cs-overview">
 		<div class="cs-content-inner">
 			<span class="section-tag">Overview</span>
 			<p>Case Zero puts you right at the center of a murder mystery,
-				and it's the player's responsibility to bring the truth to light.
-				Interrogate suspects, gather clues, and draw your own conclusions
-				about what happened. More importantly, Trust No One. This project
-				came to be a collaborative effort between another gameplay engineer 
-				and myself for Brackey's Jam 2026. It was refreshing and incredibly
-				interesting working with someone on a collaborative project because
-				it really showed me how much quicker a project can take on a life as 
-				soon as someone else starts working with you on it. 
+				and the player investigates a single room crime scene; 
+				examining clues, questioning suspects, and filing a case 
+				report to determine what happened. The twist sits in the 
+				jam's theme: "Trust No One." The narrator guiding the player 
+				through the tutorial is the one lying, not the suspects. 
+				Six discoverable clues, three NPCs with reactive dialogue, 
+				and a case board that gates the ending behind the player's own deductions.
 </p>
 		</div>
 	</section>
@@ -103,21 +111,23 @@
 	<section id="cs-challenge">
 		<div class="cs-content-inner">
 			<span class="section-tag">The Challenge</span>
-			<p>The challenge
-				The real challenge was filling the bar with customers and keeping 
-    it filled. That meant creating behavior states — thirsty, waiting, 
-    drinking, and drunk. Thirsty customers would come in and take a seat 
-    if one was available at any of the five bars. Waiting customers would 
-    advance toward the bartender, and the player had to serve them to hold 
-    them back. The trick was that once a customer inched forward, new 
-    thirsty customers would spot the empty seat and move in. Drunk customers 
-    sometimes wouldn't leave and would hog the beers sliding down the bar — 
-    which I suppose is a real life problem too, and not a bug.</p>
+			<p>Building a complete investigation loop with a second engineer 
+				meant integrating with an existing architecture I didn't design. The GM class, 
+				the ClueData/ClueDefinition pipeline, and the CaseContentPresenter were already 
+				in place when I started building the case board. The challenge was reading 
+				through the codebase, understanding how clues moved from player interaction 
+				through GM's event broadcast to the UI, and building a new system that hooked 
+				into that pipeline cleanly.</p>
 			<div class="cs-callout">
 				<span class="cs-callout-label">Core Problem</span>
-				<p>Each behavior state didn't just affect the NPC — it affected the 
-      				environment, which in turn dictated every other customer. On top of 
-      				that, I hadn't worked with tilemapping or grid systems in 2D before.</p>
+				<p>The game needed two things working together: a clue discovery 
+					system that tracked what the player found, and a case board 
+					that let the player select which evidence to include in their 
+					report. The report gates the ending — submit the right clues, 
+					and you're cleared. Miss the critical one, and you're arrested. 
+					The architecture had to let clues flow from world interaction to 
+					journal UI to ending logic without any of those systems reaching 
+					into each other directly.</p>
 			</div>
 		</div>
 	</section>
@@ -125,37 +135,67 @@
 	<section id="cs-solution">
 		<div class="cs-content-inner">
 			<span class="section-tag">My Solution</span>
-			<p>My solution for the chair problem was to have each customer take 
-    their chair with them as they moved. An NPC can't sit in a chair if 
-    another NPC's butt is dragging it along. But this created a new problem 
-    — the chair was now halfway down the bar, meaning customers could reach 
-    the end much faster. So after a customer entered the drunk state, their 
-    chair would reset to its origin after the NPC was deleted. Once chairs 
-    reset and references cleared, we had a rotating cycle of new customers 
-    coming in to drink.</p>
-			<p>Each NPC's update functions drove their state through a clean
-				set of booleans:</p>
+			<p>I built the CaseBoardManager to subscribe to the GM's existing OnClueCollected event 
+				rather than polling or querying clue state. When the player discovers a clue 
+				anywhere in the scene, GM broadcasts the full ClueData object. The case board 
+				receives it, populates the next available journal button with the clue's photo, 
+				and makes it selectable.
+
+			<p>The interaction system uses a raycast from screen center — the same approach I use 
+				in my Unreal prototype ZoneClear but adapted for first person. On hit, the system 
+				checks the object's tag to determine whether it's an NPC or a Clue, and routes to 
+				the appropriate response.</p>
+			</p>
 			<div class="cs-code">
-				<pre>void Update() {
-    EndGame();
-    IsWaiting();
-    IsDrinking();
-    FinishedDrinking();
-    IsLeaving();
-}</pre>
+				<pre>public void OnNewClueFound(ClueData clue)
+{
+    cluesCollected.Add(clue);
+    clueButtons[cluesCollected.Count - 1].gameObject.SetActive(true);
+    clueButtons[cluesCollected.Count - 1].GetComponent<Image>().sprite = clue.Definition.cluePhoto;
+    clueButtons[cluesCollected.Count - 1].onClick.AddListener(() => SelectClue(clue));
+}</pre> 
 			</div>
-			<p>As for tilemapping — it clicked when I started thinking about 2D 
-    			in 3D terms. Sorting layers just meant imagining which objects were 
-    			closest to the camera and which were farthest. Working in 2D also gave 
-    			me a much better grasp on memory optimization. Out of sight, out of 
-    			my CPU.</p>
+			<p>The case board manages two lists: cluesCollected (everything found) and cluesToSubmit 
+				(the player's report selections, capped at three). Selecting a clue on the left panel 
+				populates the report on the right. Clicking a report slot clears it. A RefreshReportSlots 
+				method rebuilds the right panel from the current list state on every change, which avoids 
+				index tracking bugs and listener stacking issues from manually managing individual slots.</p>
+			<div class="cs-code">
+				<pre>
+void RefreshReportSlots()
+{
+    for (int i = 0; i < reportSlots.Count; i++)
+    {
+        reportSlots[i].onClick.RemoveAllListeners();
+        if (i < cluesToSubmit.Count)
+        {
+            int index = i;
+            reportSlots[i].gameObject.SetActive(true);
+            reportSlots[i].GetComponentInChildren<TextMeshProUGUI>().text = cluesToSubmit[i].title;
+            reportSlots[i].onClick.AddListener(() => DeselectClue(cluesToSubmit[index]));
+        }
+        else
+        {
+            reportSlots[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
+            reportSlots[i].gameObject.SetActive(false);
+        }
+    }
+    submitButton.interactable = (cluesToSubmit.Count == 3);
+}			</pre>
+			</div>
+			<p>The ending gate checks whether the submitted report contains the security 
+				terminal footage — the one piece of evidence that clears the player's name. 
+				Without it, the report defaults to an arrest. 
+			</p>
+			<p>NPCs use a reactive dialogue system: each NPC has a relatedClueId, 
+				and their dialogue changes if the player has already discovered the relevant 
+				clue. This means investigation order matters — talking to a suspect before 
+				or after finding their connected evidence produces a different conversation.
+			</p>
 		</div>
 	</section>
-	<div class="cs-video">
-    	<video autoplay loop muted playsinline>
-        	<source src="images/TappedClip.mp4" type="video/mp4">
-    	</video>
-    	<div class="cs-video-caption">What's your highscore?</div>
+	<div class="cs-hero-image">
+    		<img src="images/caseboard.png" alt="caseboard shot">
 	</div>
 	<section id="cs-retrospective">
 		<div class="cs-content-inner">
@@ -165,23 +205,36 @@
 			<div class="cs-retro-card cs-retro-good">
 				<span class="cs-retro-label">What Worked</span>
 				<ul>
-					<li>I think UI design combined with audio cue really delivered
-						a desired effect of feeling like a polished game.
+					<li>Event-driven clue flow. Subscribing to OnClueCollected meant 
+						the case board was completely decoupled from the discovery system. 
+						No polling, no shared state, no modifications to GM required. 
+						Adding a new clue to the game would automatically work with the journal.
 					</li>
-					<li>Input Controller for first person worked well to allow players to traverse 
-						the room and easily see what could be interacted with and what couldn't
+					<li>RefreshReportSlots pattern. Rebuilding all three report slots from list 
+						state on every change eliminated an entire category of bugs — stale listeners,
+						 index mismatches, slots referencing removed clues. One method, always consistent.
+					</li>
+					<li>Tag-based interaction routing. A single raycast from screen center checks the 
+						hit object's tag to branch between NPC dialogue and clue inspection. Simple, 
+						readable, and easy to extend to new interactable types.
 					</li>
 				</ul>
 			</div>
 			<div class="cs-retro-card cs-retro-change">
 				<span class="cs-retro-label">What I'd Change</span>
 				<ul>
-					<li>Camera Clicking - The camera was the primary tool used to explore the space
-						but a script to better integrate wall stopping/avoid clipping could improve experience.
+					<li>Red herring objects. Every interactable in the current build is case-relevant. 
+						Adding false interactables — objects the player can inspect but that don't 
+						contribute to the case — would make the deduction feel earned rather than 
+						guaranteed. The player should have to think about what matters, not just 
+						collect everything.
 					</li>
-					<li>Collision detection on acting wall colliders could help prevent players from stepping inside of clues
-						or on top of them.
+					<li>Broader investigation area. The single-room scope was right for solid polishing, 
+						but the mystery format wants adjacent rooms, locked areas, and spaces that 
+						reward exploration. The architecture supports it — the raycast interaction 
+						and event-driven clue system don't care about scene size.
 					</li>
+					
 				</ul>
 			</div>
 		</div>
