@@ -1017,7 +1017,7 @@ color: var(--accent);
     /*Styling the Work Tabs */
     .tab {
         overflow: hidden;
-        border: 1px solid #ccc;
+        
         background-color: #161618;
     }
 
@@ -1046,7 +1046,7 @@ color: var(--accent);
     .tabcontent {
         display: none;
         padding: 6px 12px;
-        border: 1px solid #ccc;
+        
        
     }
 }
