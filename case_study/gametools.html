@@ -1,0 +1,185 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Zero - William Alonzo</title>
+    <link rel="stylesheet" href="/style/stylesheet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <nav>
+        <a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+        <button class="nav-toggle" aria-label="Toggle menu"
+            aria-expanded="false"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+                    <li><a href="/Resume.pdf">Resume</a></li>
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+                    <li><a href="/case_study/toxic-piracy.html">Toxic Piracy</a></li>
+                    <li><a href="/case_study/project-dunwell.html">Project Dunwell</a></li>
+                    <li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
+                    <li><a href="/case_study/job-hunting.html">Job Hunt</a></li>
+
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>HarborView GameTools</h1>
+            <p class="cs-subtitle">
+                A Population Spawner I built once, then needed twice — so I packaged it
+                instead of copy-pasting it.
+            </p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">IDE</span>
+                    <span>Visual Studio</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Language</span>
+                    <span>C#</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Published</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>July 2026</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-overview">
+        <div class="cs-content-inner">
+            <span class="section-tag">Overview</span>
+            <p>Owed and Shrunken both needed the same thing: a way to scatter objects across a scene
+                from a weighted pool, without hand-placing every instance. I built that system once for
+                Owed. When Shrunken needed it too, I had a choice — copy the script and diverge, or pull
+                it out into something both projects could depend on without duplicating the logic.
+                I packaged it as a Unity Package Manager (UPM) module instead, with a custom Inspector
+                UI so designers — including future me — could configure a spawn pool without touching code.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-challenge">
+        <div class="cs-content-inner">
+            <span class="section-tag">The Challenge</span>
+            <p>A spawner that only works for one project isn't a tool, it's a script. The moment Shrunken
+                needed the same weighted-random population logic Owed used, I had to decide whether "shared"
+                meant copy-and-modify or genuinely reusable. Copy-and-modify is faster the first time and a
+                liability every time after — two divergent copies of the same logic is two places to find
+                and fix the same bug.
+            </p>
+            <div class="cs-callout">
+                <span class="cs-callout-label">Reasoning</span>
+                <p>I wanted the tool to be configurable entirely from the Inspector — no code changes needed
+                    to add a new prefab to a pool, adjust spawn weights, or swap which points to a different
+                    project's environment. That meant leaning on ScriptableObjects as the data layer and
+                    writing a custom Editor script rather than relying on Unity's default Inspector rendering.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-solution">
+        <div class="cs-content-inner">
+            <span class="section-tag">What It Does</span>
+            <p>The package centers on a Population Spawner: a ScriptableObject-driven pool of weighted
+                prefabs, populated into a scene at designer-defined spawn points, with a custom Inspector
+                UI for one-click generate and clear.</p>
+            <ul style="padding-left: 40px">
+                <li>A ScriptableObject-based population pool holding weighted prefab entries, so designers
+                    add or reweight spawn candidates without opening a script.
+                </li>
+                <li>A custom Inspector UI with one-click Generate and Clear buttons — populate a scene for
+                    testing, then clear it back to empty without hand-deleting every spawned instance.
+                </li>
+                <li>A configurable base controller component designed for per-project customization without
+                    source modification, so Owed and Shrunken can each configure their own pools and spawn
+                    behavior against the same underlying package.
+                </li>
+            </ul>
+
+            <span class="section-tag">Architecture</span>
+            <p>The package separates data from behavior the same way ScriptableObjects are meant to:
+                the population pool is pure data, holding prefab references and weights with no logic of
+                its own. The spawner component reads that data at runtime and owns the actual instantiation,
+                weighted selection, and cleanup — meaning a designer can create a new pool asset, populate
+                it with prefabs, and hand it to a spawner without a programmer touching either side.</p>
+
+            <div class="cs-code">
+                <pre>PopulationPoolData (ScriptableObject)
+    → holds weighted prefab entries, no logic
+
+PopulationSpawner (MonoBehaviour)
+    → reads pool data at runtime
+    → owns weighted selection, instantiation, cleanup
+    → exposes Generate() / Clear() to custom Inspector buttons</pre>
+            </div>
+
+            <p>Because the pool is a ScriptableObject asset rather than a hardcoded list, the same spawner
+                component can point at entirely different pools per project — Owed's environmental set
+                dressing and Shrunken's puzzle-room hazards use the same underlying spawner logic with
+                different data assets plugged in.</p>
+        </div>
+    </section>
+
+    <section id="cs-retrospective">
+        <div class="cs-content-inner">
+            <span class="section-tag">Technical Notes to Keep in Mind</span>
+            <p>Custom Inspector buttons need editor-only guards. Generate() and Clear() are meant to run in
+                the editor for level-dressing, not at runtime — without guarding them behind
+                <code>#if UNITY_EDITOR</code>, the Inspector buttons and their supporting code would ship
+                into builds where they serve no purpose and add dead weight.
+            </p>
+            <p>MaterialPropertyBlock over CreateDynamicMaterialInstance in edit mode. Early spawn-preview
+                work created material instances every time the Inspector regenerated a preview, which leaked
+                instances across editor sessions. Switching to MaterialPropertyBlock avoided creating new
+                material assets just to preview a color or variant change.
+            </p>
+            <p><span class="section-tag">Why It Matters</span></p>
+            <p>This is the first project I built specifically to be reused rather than shipped as-is. It's
+                a small tool, but it's the credential that backs up "tools programmer" as a role I'm
+                actually targeting, not just a resume line — it's infrastructure two other projects depend
+                on today.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-footer">
+        <div class="cs-content-inner">
+            <a href="https://github.com/verbatimaura64/gametools#gametools" class="btn btn-primary">See the Repo →</a>
+            <a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+
+</html>

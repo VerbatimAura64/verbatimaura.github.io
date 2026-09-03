@@ -1,0 +1,201 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Zero - William Alonzo</title>
+    <link rel="stylesheet" href="/style/stylesheet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <nav>
+        <a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+        <button class="nav-toggle" aria-label="Toggle menu"
+            aria-expanded="false"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+                    <li><a href="/Resume.pdf">Resume</a></li>
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+                    <li><a href="/case_study/toxic-piracy.html">Toxic Piracy</a></li>
+                    <li><a href="/case_study/project-dunwell.html">Project Dunwell</a></li>
+                    <li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
+                    <li><a href="/case_study/job-hunting.html">Job Hunt</a></li>
+
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>ZoneClear</h1>
+            <p class="cs-subtitle">
+                Six years of Unity taught me one engine deeply. This is the project where I
+                learned to think in Unreal instead of translating from Unity in my head.
+            </p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">IDE</span>
+                    <span>Visual Studio</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Engine</span>
+                    <span>Unreal Engine 5.7.4</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>In Progress</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>August 2026, Sprint 2–3</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-overview">
+        <div class="cs-content-inner">
+            <span class="section-tag">Overview</span>
+            <p>Every Unreal-only listing I skipped over the summer was the same signal: six years of Unity
+                depth doesn't answer the question "have you shipped anything in Unreal." ZoneClear exists
+                to answer that question directly — a hide-and-seek systems demo built in UE5, in C++,
+                proving population spawning, interaction, and camouflage mechanics rather than modifying
+                a template and calling it done.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-challenge">
+        <div class="cs-content-inner">
+            <span class="section-tag">The Challenge</span>
+            <p>Unreal isn't Unity with different menu names. GetComponent&lt;T&gt;() becomes
+                FindComponentByClass&lt;T&gt;(). ScriptableObjects become UDataAssets. A null reference in
+                Unity throws a catchable exception; a null pointer in Unreal is a hard crash. The actual
+                challenge wasn't learning new syntax — it was un-learning the assumption that "I know how
+                to build this system" transfers automatically just because I'd built the equivalent system
+                in C# before.
+            </p>
+            <div class="cs-callout">
+                <span class="cs-callout-label">Reasoning</span>
+                <p>I built ZoneClear as a separate project from an in-progress third-person controller,
+                    deliberately using Unreal's default Third Person template untouched — the point wasn't
+                    to prove I can build a character controller, it was to prove I can build gameplay
+                    systems in C++ against Unreal's actor/component model without leaning on Blueprint
+                    as a crutch.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-solution">
+        <div class="cs-content-inner">
+            <span class="section-tag">What It Does</span>
+            <p>ZoneClear places the player in a search space populated with a target NPC hidden among
+                decoys. Finding the right one resolves the zone; guessing wrong doesn't end the round,
+                it just tells you to keep looking.</p>
+            <ul style="padding-left: 40px">
+                <li>A data-driven population pool (UPopulationPoolData) holding weighted decoy prefabs
+                    and a target prefab — Unreal's UDataAsset standing in for what would be a
+                    ScriptableObject in Unity.
+                </li>
+                <li>Zone actors that populate and clear themselves from a set of designer-placed spawn
+                    points, with weighted random decoy selection so no two playthroughs of the same zone
+                    look identical.
+                </li>
+                <li>A line-trace interaction system fired from the player's camera, hitting an
+                    InteractableComponent on whatever NPC is under the crosshair and routing the result
+                    back to the zone that spawned it.
+                </li>
+            </ul>
+
+            <span class="section-tag">Architecture</span>
+            <p>Four C++ classes divide the system cleanly: a data asset for the pool, an actor that owns
+                spawning and zone state, a component attached to every spawned NPC that knows whether it's
+                the target, and a component on the player that fires the interaction trace. No class reaches
+                into another's internals — the player's interaction component doesn't know what a "zone" is,
+                it just calls OnInteract() on whatever it hits and lets that object decide what happens next.</p>
+
+            <div class="cs-code">
+                <pre>UPopulationPoolData (UDataAsset)
+    → weighted decoy prefabs + target prefab, pure data
+
+AZoneMarkerActor (AActor)
+    → owns Populate() / ClearPopulation() / OnTargetFound()
+    → weighted random decoy selection at spawn time
+
+UInteractableComponent (UActorComponent)
+    → attached to every spawned NPC
+    → bIsTarget + OwnerZone set at spawn, not baked into Blueprint
+    → OnInteract() routes to OwnerZone->OnTargetFound() or logs a miss
+
+UPlayerInteractionComponent (UActorComponent)
+    → attached to the player
+    → LineTraceSingleByChannel from camera on TryInteract()
+    → calls OnInteract() on whatever the trace hits</pre>
+            </div>
+
+            <p>Setting bIsTarget and OwnerZone at spawn time rather than baking them into a Blueprint was
+                a deliberate choice — it means the same NPC prefab can be a decoy in one zone and the target
+                in another, decided entirely by which pool spawned it.</p>
+        </div>
+    </section>
+
+    <section id="cs-retrospective">
+        <div class="cs-content-inner">
+            <span class="section-tag">Technical Notes to Keep in Mind</span>
+            <p>Forward declarations aren't optional style — they're the difference between a header that
+                compiles and one that doesn't. AZoneMarkerActor needed a forward declaration in
+                UInteractableComponent's header (just the pointer type) and a full #include in the .cpp
+                (to actually call methods on it). Getting this backwards is one of the more common ways to
+                either bloat compile times or hit circular include errors.
+            </p>
+            <p>Null pointers don't apologize. GetOwner() returning null and getting passed straight into
+                AddIgnoredActor() caused a CDO cast crash — not a caught exception with a stack trace
+                pointing at the problem, just a crash. Null-checking before use isn't defensive-programming
+                paranoia in Unreal, it's the baseline.
+            </p>
+            <p>SpawnActor's overload resolution is picky about value vs. pointer. A SpawnActor call that
+                looked correct failed to compile until location and rotation were passed by value instead of
+                by pointer — a small signature mismatch, but the kind that costs real time when you're still
+                building intuition for the API surface.
+            </p>
+            <p><span class="section-tag">Why It Matters</span></p>
+            <p>This is proof I can hold an unfamiliar engine's actual constraints — hard crashes on null
+                access, manual memory patterns, forward-declaration discipline — rather than translating
+                Unity patterns into Unreal syntax and hoping the differences don't matter. It's also the
+                reason I stopped skipping Unreal-only listings.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-footer">
+        <div class="cs-content-inner">
+            <a href="https://github.com/verbatimaura64/zoneclear" class="btn btn-primary">See the Repo →</a>
+            <a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+
+</html>

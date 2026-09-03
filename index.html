@@ -1,409 +1,506 @@
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Homepage</title>
-	<link rel="stylesheet" href="/style/stylesheet.css"/>
+	<link rel="stylesheet" href="/style/stylesheet.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-		
-
-<script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-//document.getElementById("shipped-projects").style.display = "block";
-function openWork(evt, workName) {
-	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i <tabcontent.length; i++){
-		tabcontent[i].style.display = "none";
-	}
-
-	tablinks =document.getElementsByClassName("tablinks");
-	for (i = 0; i <tablinks.length; i++){
-		tablinks[i].className = tablinks[i].className.replace(" active","");
-	}
-
-	document.getElementById(workName).style.display= "block";
-	evt.currentTarget.className += " active";
-}
-
-function myFunction1() {
-    document.getElementById("myDropdown1").classList.toggle("show");
-}
-function myFunction2() {
-    document.getElementById("myDropdown2").classList.toggle("show");
-}
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
+		rel="stylesheet">
 
 
-</script>
+	<script>
+		/* When the user clicks on the button, 
+		toggle between hiding and showing the dropdown content */
+		//document.getElementById("shipped-projects").style.display = "block";
+		function openWork(evt, workName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+
+			document.getElementById(workName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		function myFunction1() {
+			document.getElementById("myDropdown1").classList.toggle("show");
+		}
+		function myFunction2() {
+			document.getElementById("myDropdown2").classList.toggle("show");
+		}
+		// Close the dropdown menu if the user clicks outside of it
+		window.onclick = function (event) {
+			if (!event.target.matches('.dropbtn')) {
+
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+
+
+	</script>
 </head>
+
 <body>
 	<nav>
 		<a href="/index.html#home" class="nav-logo">walonzo.dev</a>
-		<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-		<ul class ="nav-links">
-            <li><a href="/index.html#projects">Projects</a></li>
-            <li><a href="/index.html#about">About</a></li>
-            
-            <li class="nav-more">
-                <button class="nav-more-btn">More ▾</button>
-                <ul class="nav-dropdown">
+		<button class="nav-toggle" aria-label="Toggle menu"
+			aria-expanded="false"><span></span><span></span><span></span></button>
+		<ul class="nav-links">
+			<li><a href="/index.html#projects">Projects</a></li>
+			<li><a href="/index.html#about">About</a></li>
+
+			<li class="nav-more">
+				<button class="nav-more-btn">More ▾</button>
+				<ul class="nav-dropdown">
 					<li><a href="/Resume.pdf">Resume</a></li>
-                    <li><a href="/coursework/index.html">Coursework</a></li>
-                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
-                    <li class="nav-dropdown-label">Case Studies</li>
+					<li><a href="/coursework/index.html">Coursework</a></li>
+					<li><a href="/interactive_story/index.html">Creative Work</a></li>
+					<li class="nav-dropdown-label">Case Studies</li>
 					<li><a href="/case_study/toxic-piracy.html">Toxic Piracy</a></li>
 					<li><a href="/case_study/project-dunwell.html">Project Dunwell</a></li>
-                    <li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
+					<li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
 					<li><a href="/case_study/job-hunting.html">Job Hunt</a></li>
-					
-                </ul>
-            </li>
-            <li><a href="/index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-<section id="home">
-	<div class ="hero-inner">
-		<span class="hero-tag">Gameplay Programmer & Narrative Designer</span>
-		<h1>William Alonzo</h1>
-		<p class = 'hero-desc'>Game developer with 6+ years in Unity, six shipped titles,
-								and a published novelist's instinct for story. Based in Los Angeles now, looking to 
-								bring both skills to a studio that cares about craft.
-		</p>
-		<div class="hero-cta">
-			<a href="#projects" class="btn btn-primary">View Projects</a>
-			<a href="#contact" class="btn btn-secondary">Get in Touch</a>
-		</div>
-	</div>
-	
-</section>
-		
-<section id="projects">	
-	<div class="projects-inner">
-		<span class="section-tag">Work</span>
-		<div class = "tab">
-			
-			<button class = "tablinks active" onclick="openWork(event, 'shipped-projects')">Shipped</button>
-			<button class = "tablinks" onclick="openWork(event, 'game-jams')">Jams</button>
-			<button class = "tablinks" onclick="openWork(event, 'in-progress')">In Dev</button>
-			<button class = "tablinks" onclick="openWork(event, 'collaborative')">Collabs</button>
-		</div>
-		
-		<div id="shipped-projects" class="tabcontent" style="display:block">
-			<h2>Shipped Projects</h2>
-			<p class="section-intro">
-			Four games released solo on itch.io. Each one taught me 
-			something the last one didn't.
-			</p>
-			<div class="projects-grid">
-				<div class="project-card">
-					<span class="project-tag">Noir · Unity</span>
-					<div class = "cs-screenshot"><img src="/images/Sificity.png" alt="Project Dunwell City screenshot"></div>
-					<h3>Project Dunwell</h3>
-					<p>Designed and shipped a neo-noir locked-room mystery with three branching endings, nine 
-							discoverable clues, and a custom InkBridge architecture that keeps Unity and Ink fully decoupled 
-							— Unity owns world logic and collision triggers, Ink owns all narrative output, with tag-driven 
-							events coordinating UI, scene transitions, and story state without either system reaching into the other.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Ink</span>
-						<span class="tech-pill">Event Architecture</span>
-						<span class="tech-pill">Narrative Systems</span>
-					</div>
-					<a href="/case_study/project-dunwell.html" class="project-link">Read Case Study →</a>
-					<a href="https://harborviewgames.itch.io/project-dunwell" class ="project-link">Play on itch.io</a>
-				</div>
-				<div class="project-card">
-					<span class="project-tag">Arcade · Unity</span>
-					<div class = "cs-screenshot"><img src="/images/TappedMenu.png" alt="Tapped Out Menu screenshot"></div>
-					<h3>Tapped Out</h3>
-					<p>Reverse-engineered the classic arcade game Tapper, rebuilding NPC timing, queue logic, and scoring from 
-						scratch. Built state-driven NPCs that respond dynamically to player input and delivery events, with a 
-						tutorial that teaches bar management through escalating difficulty rather than instruction — the player 
-						learns the systems by feeling them.</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">State Machines</span>
-						<span class="tech-pill">NPC AI</span>
-						<span class="tech-pill">Game Feel</span>
-					</div>
-					<a href="/case_study/tapped-out.html" class="project-link">Read Case Study →</a>
-					<a href="https://harborviewgames.itch.io/tapped-out" class ="project-link">Play on itch.io</a>
-				</div>
-				<div class="project-card">
-					<span class="project-tag">Platformer · Unity</span>
-					<div class = "cs-screenshot"><img src="/images/CybercityIcon.png" alt="CyberCity Runner Icon screenshot"></div>
-					<h3>Cybercity Runner</h3>
-					<p>Built a procedural infinite scroller with object-pooled platform generation and adaptive enemy spawning 
-						that scales to player progression speed, maintaining 60 FPS on PC Browsers. Recently rebuilt with mobile touch controls 
-						using IPointerDownHandler/IPointerUpHandler for hold-to-run input and optimized for WebGL deployment.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Object Pooling</span>
-						<span class="tech-pill">Mobile</span>
-						<span class="tech-pill">WebGL</span>
-					</div>
-					<a href="/case_study/cybercity-runner.html" class="project-link">Read Case Study →</a>
-					<a href="https://harborviewgames.itch.io/cybercity-runner" class ="project-link">Play on itch.io</a>
-				</div>
-			</div>
-			<!--Dunwell Cyber Poddles Tapped-->
-		</div>
-	</div>
-	<div class = "projects-inner">
-		<!--<span class = "section-tag">Collaborative</span> -->
-		<div id="collaborative" class="tabcontent">
-			<h2>Team Projects </h2>
-			<p class="section-intro">
-			Built with a team
-			</p>
-			<div class="projects-grid">
-				<div class="project-card">
-					<span class="project-tag">VR · Unity</span>
-					<div class = "cs-screenshot">
-						<img src="/images/VRgood.png" alt="On Display screenshot">
-					</div>
-					<h3>On Display</h3>
-					<p>Collaborated on a VR art gallery for the Oculus Rift featuring 25 interactive exhibits 
-						with grab interaction via Oculus Touch controllers. Led the technical implementation — 
-						translating real-world mixed-media art into a walkable digital space using a custom 
-						Blender-to-Unity model pipeline with per-piece shader and material work matching 
-						real-world surface properties under VR lighting.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Oculus Rift</span>
-						<span class="tech-pill">Blender</span>
-						<span class="tech-pill">Shaders</span>
-					</div>
-					<a href="/case_study/on-display.html" class="project-link">Read Case Study →</a>
-				</div>
-			</div>
-		</div>
-	</div>	
-	<div class = "projects-inner">
-		<!--span class = "section-tag">Jams</span>-->
-		<div id="game-jams" class="tabcontent">
-			<h2>Game Jams</h2>
-			<p class="section-intro">
-			Built under a deadline
-			</p>
-			<div class="projects-grid">
-				<!--Piracy Shrunken Case Zero-->
-				<div class="project-card">
-					<span class="project-tag">Pirates · Unity</span>
-					<div class = "cs-screenshot">
-						<img src="/images/PiracyMenu.png" alt="Toxic Piracy Menu screenshot">
-					</div>
-					<h3>Toxic Piracy</h3>
-					<p>Built a complete battle system solo in under a week for the Made to Be Played jam.
-						Created distinct enemy AI behaviors for pirate ships and toxic vessels requiring different 
-						player strategies, procedural ocean generation producing unique layouts per playthrough, 
-						and a risk-reward treasure loop where toxic waste zones force emergent decision-making without 
-						scripted events.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Enemy AI</span>
-						<span class="tech-pill">Procedural Generation</span>
-					</div>
-					<a href="/case_study/toxic-piracy.html" class="project-link">Read Case Study →</a>
-					<a href="https://harborviewgames.itch.io/toxic-piracy" class ="project-link">Play on itch.io</a>
-				</div>
-				<div class="project-card">
-					<span class="project-tag">Mystery · Unity</span>
-					<div class = "cs-screenshot">
-						<img src="/images/CASE.png" alt="Case Zero screenshot">
-					</div>
-					<h3>Case Zero</h3>
-					<p>Created a clue collection system while improving on 
-						Shipped a complete battle system solo in under a week for the Made to Be Played jam.
-						Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different 
-						player strategies, procedural ocean generation producing unique layouts per playthrough, 
-						and a risk-reward treasure loop where toxic waste zones force emergent decision-making without 
-						scripted events. Shipped in one week.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Clue Inspection</span>
-						<span class="tech-pill">Raycast Interaction</span>
-					</div>
-					<a href="/case_study/case-zero.html" class="project-link">Read Case Study →</a>
-					<a href="https://nidhi-u.itch.io/case-zero" class ="project-link">Play on itch.io</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class = "projects-inner">
-		<!--span class = "section-tag">In Progress</span-->
-		<div id="in-progress" class="tabcontent">
-			<h2>Prototypes</h2>
-			<p class="section-intro">
-			Active work, not yet complete
-			</p>
-			<div class="projects-grid">
-				<!--Owed, HVGT-->
-				<div class="project-card">
-					<span class="project-tag">2D Platformer · Unity</span>
-					<div class = "cs-screenshot"><img src="/images/TMMOPB.png" alt="TMMOPB gameplay Title"></div>
-					
-					<h3>Poddles & Bowlber</h3>
-					<p>Architected a character-selection system with diverging level layouts and ability sets from a shared codebase. 
-						Built procedural item generation tied to platform spawn events, balancing randomness with pacing constraints across distinct playthroughs per character.
-					</p>
-					<div class="project-tech">
-						<span class="tech-pill">Unity</span>
-						<span class="tech-pill">C#</span>
-						<span class="tech-pill">Level Design</span>
-						<span class="tech-pill">Procedural Generation</span>
-					</div>
-					<a href="/case_study/tmmopb.html" class="project-link">Read Case Study →</a>
-					<a href="https://harborviewgames.itch.io/the-magnificent-misadventures-of-poddles-bowlber" class ="project-link">Play on itch.io</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>	
-			
-
-<section id ="swe">
-	<div class = "swe-inner">
-		<span class="section-tag">Software Engineering</span>
-		<h2>Shipped Projects</h2>
-		<p class="section-intro">
-			Applying practical principals for recognizable solutions
-		</p>
-		<div class="projects-grid">
-			<div class="project-card">
-				<span class="project-tag">Java · IntelliJ</span>
-				<div class = "cs-screenshot">
-					<img src="/images/VRgood.png" alt="On Display screenshot">
-				</div>
-				<h3>Job Hunt Tracker</h3>
-				<p>A full-stack REST API, built to manage my own job search — deployed and in daily use.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Spring Boot</span>
-					<span class="tech-pill">Java 21</span>
-					<span class="tech-pill">PostgreSQL</span>
-					<span class="tech-pill">Lombok</span>
-					<span class="tech-pill">Maven</span>
-				</div>
-				<a href="/case_study/job-hunting.html" class="project-link">Read Case Study →</a>
-			</div>
-		</div>
-	</div>
-
-</section>
-
-<section id="about">
-	<div class ="about-inner">
-		<span class="section-tag">Background</span>
-		<h2>About Me</h2>
-		<div class ="about-grid">
-			<div class="about-text">
-				<p>
-					I bring a rare combination of technical and narrative skills that informs how I design 
-					systems and write for interactive media. I'm drawn to gameplay programming, tools development, and narrative design.
-					I want to create a game that feels good and tools that can make the engine and work easier. I want a story
-					that is going to stay with people after they've played it, to create a community that shares a love for a character 
-					after the credits roll. Actively targeting gameplay programming, tools development, and narrative design roles.
-				</p>
-			</div>
-			<div class="about-skills">
-				<span class="section-tag">Skills</span>
-				<ul class="skills-list">
-					<li>Unity / C#</li>
-					<li>Unreal / C++</li>
-					<li>Gameplay Systems</li>
-					<li>Editor Tooling</li>
-					<li>Narrative Design</li>
-					<li>Git / GitHub</li>
-					<li>HTML / CSS/ JS</li>
-					<li>Spanish (Fluent)</li>
 
 				</ul>
+			</li>
+			<li><a href="/index.html#contact">Contact</a></li>
+		</ul>
+	</nav>
+
+	<section id="home">
+		<div class="hero-inner">
+			<span class="hero-tag">Gameplay Programmer & Narrative Designer</span>
+			<h1>William Alonzo</h1>
+			<p class='hero-desc'>Game developer with 6+ years in Unity, six shipped titles,
+				and a published novelist's instinct for story. Based in Los Angeles now, looking to
+				bring both skills to a studio that cares about craft.
+			</p>
+			<div class="hero-cta">
+				<a href="#projects" class="btn btn-primary">View Projects</a>
+				<a href="#contact" class="btn btn-secondary">Get in Touch</a>
 			</div>
 		</div>
-	</div>
 
-</section>
+	</section>
 
-<section id="contact"> 
-	<div class="contact-inner">
-		<span class="section-tag">Get in Touch</span>
-		<h2>Let's Chat</h2>
-		<p class="section-intro">
+	<section id="projects">
+		<div class="projects-inner">
+			<span class="section-tag">Work</span>
+			<div class="tab">
+
+				<button class="tablinks active" onclick="openWork(event, 'shipped-projects')">Shipped</button>
+				<button class="tablinks" onclick="openWork(event, 'game-jams')">Jams</button>
+				<button class="tablinks" onclick="openWork(event, 'in-progress')">In Dev</button>
+				<button class="tablinks" onclick="openWork(event, 'collaborative')">Collabs</button>
+			</div>
+
+			<div id="shipped-projects" class="tabcontent" style="display:block">
+				<h2>Shipped Projects</h2>
+				<p class="section-intro">
+					Four games released solo on itch.io. Each one taught me
+					something the last one didn't.
+				</p>
+				<div class="projects-grid">
+					<div class="project-card">
+						<span class="project-tag">Noir · Unity</span>
+						<div class="cs-screenshot"><img src="/images/Sificity.png"
+								alt="Project Dunwell City screenshot"></div>
+						<h3>Project Dunwell</h3>
+						<p>Designed and shipped a neo-noir locked-room mystery with three branching endings, nine
+							discoverable clues, and a custom InkBridge architecture that keeps Unity and Ink fully
+							decoupled
+							— Unity owns world logic and collision triggers, Ink owns all narrative output, with
+							tag-driven
+							events coordinating UI, scene transitions, and story state without either system reaching
+							into the other.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Ink</span>
+							<span class="tech-pill">Event Architecture</span>
+							<span class="tech-pill">Narrative Systems</span>
+						</div>
+						<a href="/case_study/project-dunwell.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/project-dunwell" class="project-link">Play on
+							itch.io</a>
+					</div>
+					<div class="project-card">
+						<span class="project-tag">Arcade · Unity</span>
+						<div class="cs-screenshot"><img src="/images/TappedMenu.png" alt="Tapped Out Menu screenshot">
+						</div>
+						<h3>Tapped Out</h3>
+						<p>Reverse-engineered the classic arcade game Tapper, rebuilding NPC timing, queue logic, and
+							scoring from
+							scratch. Built state-driven NPCs that respond dynamically to player input and delivery
+							events, with a
+							tutorial that teaches bar management through escalating difficulty rather than instruction —
+							the player
+							learns the systems by feeling them.</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">State Machines</span>
+							<span class="tech-pill">NPC AI</span>
+							<span class="tech-pill">Game Feel</span>
+						</div>
+						<a href="/case_study/tapped-out.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/tapped-out" class="project-link">Play on itch.io</a>
+					</div>
+					<div class="project-card">
+						<span class="project-tag">Platformer · Unity</span>
+						<div class="cs-screenshot"><img src="/images/CybercityIcon.png"
+								alt="CyberCity Runner Icon screenshot"></div>
+						<h3>Cybercity Runner</h3>
+						<p>Built a procedural infinite scroller with object-pooled platform generation and adaptive
+							enemy spawning
+							that scales to player progression speed, maintaining 60 FPS on PC Browsers. Recently rebuilt
+							with mobile touch controls
+							using IPointerDownHandler/IPointerUpHandler for hold-to-run input and optimized for WebGL
+							deployment.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Object Pooling</span>
+							<span class="tech-pill">Mobile</span>
+							<span class="tech-pill">WebGL</span>
+						</div>
+						<a href="/case_study/cybercity-runner.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/cybercity-runner" class="project-link">Play on
+							itch.io</a>
+					</div>
+				</div>
+				<!--Dunwell Cyber Poddles Tapped-->
+			</div>
+		</div>
+		<div class="projects-inner">
+			<!--<span class = "section-tag">Collaborative</span> -->
+			<div id="collaborative" class="tabcontent">
+				<h2>Team Projects </h2>
+				<p class="section-intro">
+					Built with a team
+				</p>
+				<div class="projects-grid">
+					<div class="project-card">
+						<span class="project-tag">VR · Unity</span>
+						<div class="cs-screenshot">
+							<img src="/images/VRgood.png" alt="On Display screenshot">
+						</div>
+						<h3>On Display</h3>
+						<p>Collaborated on a VR art gallery for the Oculus Rift featuring 25 interactive exhibits
+							with grab interaction via Oculus Touch controllers. Led the technical implementation —
+							translating real-world mixed-media art into a walkable digital space using a custom
+							Blender-to-Unity model pipeline with per-piece shader and material work matching
+							real-world surface properties under VR lighting.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Oculus Rift</span>
+							<span class="tech-pill">Blender</span>
+							<span class="tech-pill">Shaders</span>
+						</div>
+						<a href="/case_study/on-display.html" class="project-link">Read Case Study →</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="projects-inner">
+			<!--span class = "section-tag">Jams</span>-->
+			<div id="game-jams" class="tabcontent">
+				<h2>Game Jams</h2>
+				<p class="section-intro">
+					Built under a deadline
+				</p>
+				<div class="projects-grid">
+					<!--Piracy Shrunken Case Zero-->
+					<div class="project-card">
+						<span class="project-tag">Pirates · Unity</span>
+						<div class="cs-screenshot">
+							<img src="/images/PiracyMenu.png" alt="Toxic Piracy Menu screenshot">
+						</div>
+						<h3>Toxic Piracy</h3>
+						<p>Built a complete battle system solo in under a week for the Made to Be Played jam.
+							Created distinct enemy AI behaviors for pirate ships and toxic vessels requiring different
+							player strategies, procedural ocean generation producing unique layouts per playthrough,
+							and a risk-reward treasure loop where toxic waste zones force emergent decision-making
+							without
+							scripted events.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Enemy AI</span>
+							<span class="tech-pill">Procedural Generation</span>
+						</div>
+						<a href="/case_study/toxic-piracy.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/toxic-piracy" class="project-link">Play on itch.io</a>
+					</div>
+					<div class="project-card">
+						<span class="project-tag">Mystery · Unity</span>
+						<div class="cs-screenshot">
+							<img src="/images/Honey.png" alt="Case Zero screenshot">
+						</div>
+						<h3>Honey, I Shrunk Myself</h3>
+						<p>Created a clue collection system while improving on
+							Shipped a complete battle system solo in under a week for the Made to Be Played jam.
+							Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different
+							player strategies, procedural ocean generation producing unique layouts per playthrough,
+							and a risk-reward treasure loop where toxic waste zones force emergent decision-making
+							without
+							scripted events. Shipped in one week.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Clue Inspection</span>
+							<span class="tech-pill">Raycast Interaction</span>
+						</div>
+						<a href="/case_study/case-zero.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/honey-i-shrunk-myself" class="project-link">Play on itch.io</a>
+					</div>
+					<div class="project-card">
+						<span class="project-tag">Mystery · Unity</span>
+						<div class="cs-screenshot">
+							<img src="/images/CASE.png" alt="Case Zero screenshot">
+						</div>
+						<h3>Case Zero</h3>
+						<p>Created a clue collection system while improving on
+							Shipped a complete battle system solo in under a week for the Made to Be Played jam.
+							Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different
+							player strategies, procedural ocean generation producing unique layouts per playthrough,
+							and a risk-reward treasure loop where toxic waste zones force emergent decision-making
+							without
+							scripted events. Shipped in one week.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Clue Inspection</span>
+							<span class="tech-pill">Raycast Interaction</span>
+						</div>
+						<a href="/case_study/case-zero.html" class="project-link">Read Case Study →</a>
+						<a href="https://nidhi-u.itch.io/case-zero" class="project-link">Play on itch.io</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="projects-inner">
+			<!--span class = "section-tag">In Progress</span-->
+			<div id="in-progress" class="tabcontent">
+				<h2>In Progress</h2>
+				<p class="section-intro">
+					Active work, not yet complete
+				</p>
+				<div class="projects-grid">
+					<!--Owed, HVGT-->
+					<div class="project-card">
+						<span class="project-tag">2D Platformer · Unity</span>
+						<div class="cs-screenshot"><img src="/images/TMMOPB.png" alt="TMMOPB gameplay Title"></div>
+
+						<h3>Poddles & Bowlber</h3>
+						<p>Architected a character-selection system with diverging level layouts and ability sets from a
+							shared codebase.
+							Built procedural item generation tied to platform spawn events, balancing randomness with
+							pacing constraints across distinct playthroughs per character.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Level Design</span>
+							<span class="tech-pill">Procedural Generation</span>
+						</div>
+						<a href="/case_study/tmmopb.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/the-magnificent-misadventures-of-poddles-bowlber"
+							class="project-link">Play on itch.io</a>
+					</div>
+
+					<div class="project-card">
+						<span class="project-tag">Mystery · Unity</span>
+						<div class="cs-screenshot">
+							<img src="/images/zoneclear.png" alt="Zone Clear screenshot">
+						</div>
+						<h3>Zone Clear</h3>
+						<p>Created a clue collection system while improving on
+							Shipped a complete battle system solo in under a week for the Made to Be Played jam.
+							Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different
+							player strategies, procedural ocean generation producing unique layouts per playthrough,
+							and a risk-reward treasure loop where toxic waste zones force emergent decision-making
+							without
+							scripted events. Shipped in one week.
+						</p>
+						<div class="project-tech">
+							<span class="tech-pill">Unity</span>
+							<span class="tech-pill">C#</span>
+							<span class="tech-pill">Clue Inspection</span>
+							<span class="tech-pill">Raycast Interaction</span>
+						</div>
+						<a href="/case_study/zoneclear.html" class="project-link">Read Case Study →</a>
+						<a href="https://harborviewgames.itch.io/owed" class="project-link">Play on itch.io</a>
+					</div>
+				</div>
+			</div>
+	</section>
+
+
+	<section id="swe">
+		<div class="swe-inner">
+			<span class="section-tag">Software Engineering</span>
+			<h2>Shipped Projects</h2>
+			<p class="section-intro">
+				Applying practical principals for recognizable solutions
+			</p>
+			<div class="projects-grid">
+				<div class="project-card">
+					<span class="project-tag">Java · IntelliJ</span>
+					<div class="cs-screenshot">
+						<img src="/images/VRgood.png" alt="On Display screenshot">
+					</div>
+					<h3>Job Hunt Tracker</h3>
+					<p>A full-stack REST API, built to manage my own job search — deployed and in daily use.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Spring Boot</span>
+						<span class="tech-pill">Java 21</span>
+						<span class="tech-pill">PostgreSQL</span>
+						<span class="tech-pill">Lombok</span>
+						<span class="tech-pill">Maven</span>
+					</div>
+					<a href="/case_study/job-hunting.html" class="project-link">Read Case Study →</a>
+				</div>
+				<div class="project-card">
+					<span class="project-tag">C# · Unity Editor API</span>
+					<div class="cs-screenshot">
+						<img src="/images/GameToolsInspector.png"
+							alt="HarborView GameTools custom Inspector screenshot">
+					</div>
+					<h3>HarborView GameTools</h3>
+					<p>A published UPM package featuring a Population Spawner with ScriptableObject-driven
+						configuration and a custom Inspector UI — built as shared infrastructure now powering
+						two other projects.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity Editor API</span>
+						<span class="tech-pill">ScriptableObjects</span>
+						<span class="tech-pill">UPM</span>
+						<span class="tech-pill">C#</span>
+					</div>
+					<a href="/case_study/gametools.html" class="project-link">Read Case Study →</a>
+					<a href="https://github.com/verbatimaura64/gametools" class="project-link">View on GitHub →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="about">
+		<div class="about-inner">
+			<span class="section-tag">Background</span>
+			<h2>About Me</h2>
+			<div class="about-grid">
+				<div class="about-text">
+					<p>
+						I bring a rare combination of technical and narrative skills that informs how I design
+						systems and write for interactive media. I'm drawn to gameplay programming, tools development,
+						and narrative design.
+						I want to create a game that feels good and tools that can make the engine and work easier. I
+						want a story
+						that is going to stay with people after they've played it, to create a community that shares a
+						love for a character
+						after the credits roll. Actively targeting gameplay programming, tools development, and
+						narrative design roles.
+					</p>
+				</div>
+				<div class="about-skills">
+					<span class="section-tag">Skills</span>
+					<ul class="skills-list">
+						<li>Unity / C#</li>
+						<li>Unreal / C++</li>
+						<li>Gameplay Systems</li>
+						<li>Editor Tooling</li>
+						<li>Narrative Design</li>
+						<li>Git / GitHub</li>
+						<li>HTML / CSS/ JS </li>
+						<li>Java</li>
+						<li>Spanish (Fluent) </li>
+						<li>French (Conversational)</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="contact">
+		<div class="contact-inner">
+			<span class="section-tag">Get in Touch</span>
+			<h2>Let's Chat</h2>
+			<p class="section-intro">
 				Open to junior gameplay programming, tools,
 				and narrative design roles. Also happy to talk shop.
-		</p>
-		<div class="contact-links">
-			<a href="mailto:walonzo64@outlook.com" class="contact-link">
-				<span class="contact-label">Email</span>
-				<span>walonzo64@outlook.com</span>
-			</a>
-			<a href="https://github.com/verbatimaura64" class="contact-link">
-				<span class="contact-label">GitHub</span>
-				<span>github.com/verbatimaura64</span>
-			</a>
-			<a href="https://harborviewgames.itch.io" class="contact-link">
-				<span class="contact-label">itch.io</span>
-				<span>harborviewgames.itch.io</span>
-			</a>
-			<a href="https://www.linkedin.com/in/william-alonzo-76954a111/" class="contact-link">
-				<span class="contact-label">LinkedIn</span>
-				<span>linkedin.com/in/walonzo</span>
-			</a>
+			</p>
+			<div class="contact-links">
+				<a href="mailto:walonzo64@outlook.com" class="contact-link">
+					<span class="contact-label">Email</span>
+					<span>walonzo64@outlook.com</span>
+				</a>
+				<a href="https://github.com/verbatimaura64" class="contact-link">
+					<span class="contact-label">GitHub</span>
+					<span>github.com/verbatimaura64</span>
+				</a>
+				<a href="https://harborviewgames.itch.io" class="contact-link">
+					<span class="contact-label">itch.io</span>
+					<span>harborviewgames.itch.io</span>
+				</a>
+				<a href="https://www.linkedin.com/in/william-alonzo-76954a111/" class="contact-link">
+					<span class="contact-label">LinkedIn</span>
+					<span>linkedin.com/in/walonzo</span>
+				</a>
+			</div>
 		</div>
-	</div>
 
 
-</section>
+	</section>
 
-<section id="easter-egg">
-	<div class="inner-egg">
-		<span class="section-tag">Did you find this easter egg?</span>
+	<section id="easter-egg">
+		<div class="inner-egg">
+			<span class="section-tag">Did you find this easter egg?</span>
 			<h3>My origin</h3>
 			<div class="egg-text">
-			<p>I'm a bit of a sentimental person, 
-				and I didn't want to entirely delete my first index page.
-				There's also no appropriate room for it here, but what gamer
-				doesn't love a good easter egg.
-			</p>
-			<div class="egg-link">
-			<a href="/v1.html">See where it all started →</a></div>
+				<p>I'm a bit of a sentimental person,
+					and I didn't want to entirely delete my first index page.
+					There's also no appropriate room for it here, but what gamer
+					doesn't love a good easter egg.
+				</p>
+				<div class="egg-link">
+					<a href="/v1.html">See where it all started →</a>
+				</div>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<script src="/script.js" defer></script>
+	<script src="/script.js" defer></script>
 </body>
+
 </html>
