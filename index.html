@@ -15,9 +15,23 @@
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
+//document.getElementById("shipped-projects").style.display = "block";
+function openWork(evt, workName) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i <tabcontent.length; i++){
+		tabcontent[i].style.display = "none";
+	}
+
+	tablinks =document.getElementsByClassName("tablinks");
+	for (i = 0; i <tablinks.length; i++){
+		tablinks[i].className = tablinks[i].className.replace(" active","");
+	}
+
+	document.getElementById(workName).style.display= "block";
+	evt.currentTarget.className += " active";
 }
+
 function myFunction1() {
     document.getElementById("myDropdown1").classList.toggle("show");
 }
@@ -38,6 +52,8 @@ window.onclick = function(event) {
     }
   }
 }
+
+
 </script>
 </head>
 <body>
@@ -85,135 +101,198 @@ window.onclick = function(event) {
 <section id="projects">	
 	<div class="projects-inner">
 		<span class="section-tag">Work</span>
-		<h2>Shipped Projects</h2>
-		<p class="section-intro">
-			Six games released on itch.io. Each one taught me 
+		<div class = "tab">
+			
+			<button class = "tablinks active" onclick="openWork(event, 'shipped-projects')">Shipped</button>
+			<button class = "tablinks" onclick="openWork(event, 'game-jams')">Jams</button>
+			<button class = "tablinks" onclick="openWork(event, 'in-progress')">In Dev</button>
+			<button class = "tablinks" onclick="openWork(event, 'collaborative')">Collabs</button>
+		</div>
+		
+		<div id="shipped-projects" class="tabcontent" style="display:block">
+			<h2>Shipped Projects</h2>
+			<p class="section-intro">
+			Four games released solo on itch.io. Each one taught me 
 			something the last one didn't.
-		</p>
-		<div class="projects-grid">
-			<div class="project-card">
-				<span class="project-tag">VR · Unity</span>
-				<div class = "cs-screenshot">
-					<img src="/images/VRgood.png" alt="On Display screenshot">
+			</p>
+			<div class="projects-grid">
+				<div class="project-card">
+					<span class="project-tag">Noir · Unity</span>
+					<div class = "cs-screenshot"><img src="/images/Sificity.png" alt="Project Dunwell City screenshot"></div>
+					<h3>Project Dunwell</h3>
+					<p>Designed and shipped a neo-noir locked-room mystery with three branching endings, nine 
+							discoverable clues, and a custom InkBridge architecture that keeps Unity and Ink fully decoupled 
+							— Unity owns world logic and collision triggers, Ink owns all narrative output, with tag-driven 
+							events coordinating UI, scene transitions, and story state without either system reaching into the other.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Ink</span>
+						<span class="tech-pill">Event Architecture</span>
+						<span class="tech-pill">Narrative Systems</span>
+					</div>
+					<a href="/case_study/project-dunwell.html" class="project-link">Read Case Study →</a>
+					<a href="https://harborviewgames.itch.io/project-dunwell" class ="project-link">Play on itch.io</a>
 				</div>
-				<h3>On Display</h3>
-				<p>Built a VR art gallery for the Oculus Rift featuring 25 interactive exhibits 
-					with grab interaction via Oculus Touch controllers. Translated real-world 
-					mixed-media art — paintings, sculptures, skateboards, ceramics — into a walkable 
-					digital space using a custom Blender-to-Unity model pipeline with per-piece shader 
-					and material work matching real-world surface properties under VR lighting.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">Oculus Rift</span>
-					<span class="tech-pill">Blender</span>
-					<span class="tech-pill">Shaders</span>
+				<div class="project-card">
+					<span class="project-tag">Arcade · Unity</span>
+					<div class = "cs-screenshot"><img src="/images/TappedMenu.png" alt="Tapped Out Menu screenshot"></div>
+					<h3>Tapped Out</h3>
+					<p>Reverse-engineered the classic arcade game Tapper, rebuilding NPC timing, queue logic, and scoring from 
+						scratch. Built state-driven NPCs that respond dynamically to player input and delivery events, with a 
+						tutorial that teaches bar management through escalating difficulty rather than instruction — the player 
+						learns the systems by feeling them.</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">State Machines</span>
+						<span class="tech-pill">NPC AI</span>
+						<span class="tech-pill">Game Feel</span>
+					</div>
+					<a href="/case_study/tapped-out.html" class="project-link">Read Case Study →</a>
+					<a href="https://harborviewgames.itch.io/tapped-out" class ="project-link">Play on itch.io</a>
 				</div>
-				<a href="/case_study/on-display.html" class="project-link">Read Case Study →</a>
+				<div class="project-card">
+					<span class="project-tag">Platformer · Unity</span>
+					<div class = "cs-screenshot"><img src="/images/CybercityIcon.png" alt="CyberCity Runner Icon screenshot"></div>
+					<h3>Cybercity Runner</h3>
+					<p>Built a procedural infinite scroller with object-pooled platform generation and adaptive enemy spawning 
+						that scales to player progression speed, maintaining 60 FPS on PC Browsers. Recently rebuilt with mobile touch controls 
+						using IPointerDownHandler/IPointerUpHandler for hold-to-run input and optimized for WebGL deployment.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Object Pooling</span>
+						<span class="tech-pill">Mobile</span>
+						<span class="tech-pill">WebGL</span>
+					</div>
+					<a href="/case_study/cybercity-runner.html" class="project-link">Read Case Study →</a>
+					<a href="https://harborviewgames.itch.io/cybercity-runner" class ="project-link">Play on itch.io</a>
+				</div>
 			</div>
-			<div class="project-card">
-				<span class="project-tag">Pirates · Unity</span>
-				<div class = "cs-screenshot">
-					<img src="/images/PiracyMenu.png" alt="Toxic Piracy Menu screenshot">
-				</div>
-				<h3>Toxic Piracy</h3>
-				<p>Shipped a complete battle system solo in under a week for the Made to Be Played jam.
-					 Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different 
-					 player strategies, procedural ocean generation producing unique layouts per playthrough, 
-					 and a risk-reward treasure loop where toxic waste zones force emergent decision-making without 
-					 scripted events. Shipped in one week.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">Enemy AI</span>
-					<span class="tech-pill">Procedural Generation</span>
-				</div>
-				<a href="/case_study/toxic-piracy.html" class="project-link">Read Case Study →</a>
-				<a href="https://harborviewgames.itch.io/toxic-piracy" class ="project-link">Play on itch.io</a>
-			</div>
-			<div class="project-card">
-				<span class="project-tag">Noir · Unity</span>
-				<div class = "cs-screenshot"><img src="/images/Sificity.png" alt="Project Dunwell City screenshot"></div>
-				
-				<h3>Project Dunwell</h3>
-				<p>Designed and shipped a neo-noir locked-room mystery with three branching endings, nine 
-					discoverable clues, and a custom InkBridge architecture that keeps Unity and Ink fully decoupled 
-					— Unity owns world logic and collision triggers, Ink owns all narrative output, with tag-driven 
-					events coordinating UI, scene transitions, and story state without either system reaching into the other.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">Ink</span>
-					<span class="tech-pill">Event Architecture</span>
-					<span class="tech-pill">Narrative Systems</span>
-				</div>
-				<a href="/case_study/project-dunwell.html" class="project-link">Read Case Study →</a>
-				<a href="https://harborviewgames.itch.io/project-dunwell" class ="project-link">Play on itch.io</a>
-			</div>
-			<div class="project-card">
-				<span class="project-tag">Arcade · Unity</span>
-				<div class = "cs-screenshot"><img src="/images/TappedMenu.png" alt="Tapped Out Menu screenshot"></div>
-				
-				<h3>Tapped Out</h3>
-				<p>Reverse-engineered the classic arcade game Tapper, rebuilding NPC timing, queue logic, and scoring from 
-					scratch. Built state-driven NPCs that respond dynamically to player input and delivery events, with a 
-					tutorial that teaches bar management through escalating difficulty rather than instruction — the player 
-					learns the systems by feeling them.</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">State Machines</span>
-					<span class="tech-pill">NPC AI</span>
-					<span class="tech-pill">Game Feel</span>
-				</div>
-				<a href="/case_study/tapped-out.html" class="project-link">Read Case Study →</a>
-				<a href="https://harborviewgames.itch.io/tapped-out" class ="project-link">Play on itch.io</a>
-			</div>
-			<div class="project-card">
-				<span class="project-tag">Platformer · Unity</span>
-				<div class = "cs-screenshot"><img src="/images/CybercityIcon.png" alt="CyberCity Runner Icon screenshot"></div>
-				<h3>Cybercity Runner</h3>
-				<p>Built a procedural infinite scroller with object-pooled platform generation and adaptive enemy spawning 
-					that scales to player progression speed, maintaining 60 FPS on PC Browsers. Recently rebuilt with mobile touch controls 
-					using IPointerDownHandler/IPointerUpHandler for hold-to-run input and optimized for WebGL deployment.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">Object Pooling</span>
-					<span class="tech-pill">Mobile</span>
-					<span class="tech-pill">WebGL</span>
-				</div>
-				<a href="/case_study/cybercity-runner.html" class="project-link">Read Case Study →</a>
-				<a href="https://harborviewgames.itch.io/cybercity-runner" class ="project-link">Play on itch.io</a>
-			</div>
-			<div class="project-card">
-				<span class="project-tag">2D Platformer · Unity</span>
-				<div class = "cs-screenshot"><img src="/images/TMMOPB.png" alt="TMMOPB gameplay Title"></div>
-				
-				<h3>Poddles & Bowlber</h3>
-				<p>Architected a character-selection system with diverging level layouts and ability sets from a shared codebase. 
-					Built procedural item generation tied to platform spawn events, balancing randomness with pacing constraints across distinct playthroughs per character.
-				</p>
-				<div class="project-tech">
-					<span class="tech-pill">Unity</span>
-					<span class="tech-pill">C#</span>
-					<span class="tech-pill">Level Design</span>
-					<span class="tech-pill">Procedural Generation</span>
-				</div>
-				<a href="/case_study/tmmopb.html" class="project-link">Read Case Study →</a>
-				<a href="https://harborviewgames.itch.io/the-magnificent-misadventures-of-poddles-bowlber" class ="project-link">Play on itch.io</a>
-			</div>
-			
-			
+			<!--Dunwell Cyber Poddles Tapped-->
 		</div>
 	</div>
-
-
-</section>
+	<div class = "projects-inner">
+		<!--<span class = "section-tag">Collaborative</span> -->
+		<div id="collaborative" class="tabcontent">
+			<h2>Team Projects </h2>
+			<p class="section-intro">
+			Built with a team
+			</p>
+			<div class="projects-grid">
+				<div class="project-card">
+					<span class="project-tag">VR · Unity</span>
+					<div class = "cs-screenshot">
+						<img src="/images/VRgood.png" alt="On Display screenshot">
+					</div>
+					<h3>On Display</h3>
+					<p>Collaborated on a VR art gallery for the Oculus Rift featuring 25 interactive exhibits 
+						with grab interaction via Oculus Touch controllers. Led the technical implementation — 
+						translating real-world mixed-media art into a walkable digital space using a custom 
+						Blender-to-Unity model pipeline with per-piece shader and material work matching 
+						real-world surface properties under VR lighting.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Oculus Rift</span>
+						<span class="tech-pill">Blender</span>
+						<span class="tech-pill">Shaders</span>
+					</div>
+					<a href="/case_study/on-display.html" class="project-link">Read Case Study →</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class = "projects-inner">
+		<!--span class = "section-tag">Jams</span>-->
+		<div id="game-jams" class="tabcontent">
+			<h2>Game Jams</h2>
+			<p class="section-intro">
+			Built under a deadline
+			</p>
+			<div class="projects-grid">
+				<!--Piracy Shrunken Case Zero-->
+				<div class="project-card">
+					<span class="project-tag">Pirates · Unity</span>
+					<div class = "cs-screenshot">
+						<img src="/images/PiracyMenu.png" alt="Toxic Piracy Menu screenshot">
+					</div>
+					<h3>Toxic Piracy</h3>
+					<p>Built a complete battle system solo in under a week for the Made to Be Played jam.
+						Created distinct enemy AI behaviors for pirate ships and toxic vessels requiring different 
+						player strategies, procedural ocean generation producing unique layouts per playthrough, 
+						and a risk-reward treasure loop where toxic waste zones force emergent decision-making without 
+						scripted events.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Enemy AI</span>
+						<span class="tech-pill">Procedural Generation</span>
+					</div>
+					<a href="/case_study/toxic-piracy.html" class="project-link">Read Case Study →</a>
+					<a href="https://harborviewgames.itch.io/toxic-piracy" class ="project-link">Play on itch.io</a>
+				</div>
+				<div class="project-card">
+					<span class="project-tag">Mystery · Unity</span>
+					<div class = "cs-screenshot">
+						<img src="/images/CASE.png" alt="Case Zero screenshot">
+					</div>
+					<h3>Case Zero</h3>
+					<p>Created a clue collection system while improving on 
+						Shipped a complete battle system solo in under a week for the Made to Be Played jam.
+						Built distinct enemy AI behaviors for pirate ships and toxic vessels requiring different 
+						player strategies, procedural ocean generation producing unique layouts per playthrough, 
+						and a risk-reward treasure loop where toxic waste zones force emergent decision-making without 
+						scripted events. Shipped in one week.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Clue Inspection</span>
+						<span class="tech-pill">Raycast Interaction</span>
+					</div>
+					<a href="/case_study/case-zero.html" class="project-link">Read Case Study →</a>
+					<a href="https://nidhi-u.itch.io/case-zero" class ="project-link">Play on itch.io</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class = "projects-inner">
+		<!--span class = "section-tag">In Progress</span-->
+		<div id="in-progress" class="tabcontent">
+			<h2>Prototypes</h2>
+			<p class="section-intro">
+			Active work, not yet complete
+			</p>
+			<div class="projects-grid">
+				<!--Owed, HVGT-->
+				<div class="project-card">
+					<span class="project-tag">2D Platformer · Unity</span>
+					<div class = "cs-screenshot"><img src="/images/TMMOPB.png" alt="TMMOPB gameplay Title"></div>
+					
+					<h3>Poddles & Bowlber</h3>
+					<p>Architected a character-selection system with diverging level layouts and ability sets from a shared codebase. 
+						Built procedural item generation tied to platform spawn events, balancing randomness with pacing constraints across distinct playthroughs per character.
+					</p>
+					<div class="project-tech">
+						<span class="tech-pill">Unity</span>
+						<span class="tech-pill">C#</span>
+						<span class="tech-pill">Level Design</span>
+						<span class="tech-pill">Procedural Generation</span>
+					</div>
+					<a href="/case_study/tmmopb.html" class="project-link">Read Case Study →</a>
+					<a href="https://harborviewgames.itch.io/the-magnificent-misadventures-of-poddles-bowlber" class ="project-link">Play on itch.io</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>	
+			
 
 <section id ="swe">
 	<div class = "swe-inner">
@@ -240,6 +319,7 @@ window.onclick = function(event) {
 				</div>
 				<a href="/case_study/job-hunting.html" class="project-link">Read Case Study →</a>
 			</div>
+		</div>
 	</div>
 
 </section>
