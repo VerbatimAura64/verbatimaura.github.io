@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISM - William Alonzo</title>
+    <link rel="stylesheet" href="/style/stylesheet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <nav>
+        <a href="/index.html#home" class="nav-logo">walonzo.dev</a>
+        <button class="nav-toggle" aria-label="Toggle menu"
+            aria-expanded="false"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+            <li><a href="/index.html#projects">Projects</a></li>
+            <li><a href="/index.html#about">About</a></li>
+
+            <li class="nav-more">
+                <button class="nav-more-btn">More ▾</button>
+                <ul class="nav-dropdown">
+                    <li><a href="/Resume.pdf">Resume</a></li>
+                    <li><a href="/coursework/index.html">Coursework</a></li>
+                    <li><a href="/interactive_story/index.html">Creative Work</a></li>
+                    <li class="nav-dropdown-label">Case Studies</li>
+                    <li><a href="/case_study/toxic-piracy.html">Toxic Piracy</a></li>
+                    <li><a href="/case_study/project-dunwell.html">Project Dunwell</a></li>
+                    <li><a href="/case_study/tapped-out.html">Tapped Out</a></li>
+                    <li><a href="/case_study/job-hunting.html">Job Hunt</a></li>
+
+                </ul>
+            </li>
+            <li><a href="/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="cs-hero">
+        <div class="cs-hero-inner">
+            <a href="./index.html" class="cs-back">← Back to Portfolio</a>
+            <span class="section-tag">Case Study</span>
+            <h1>Honey, I Shrunk Myself</h1>
+            <p class="cs-subtitle">
+                A weekend jam built around one verb — scale — pushed as far as a raycast
+                and a deadline would allow.
+            </p>
+            <div class="cs-meta">
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">IDE</span>
+                    <span>Visual Studio</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Language</span>
+                    <span>C#</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Status</span>
+                    <span>Shipped — Jam Entry</span>
+                </div>
+                <div class="cs-meta-item">
+                    <span class="cs-meta-label">Timeline</span>
+                    <span>Kenney Jam 2026, 1 Weekend</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-overview">
+        <div class="cs-content-inner">
+            <span class="section-tag">Overview</span>
+            <p>Kenney Jam's theme was Scale, using only Kenney and KayKit asset packs. I built a first-person
+                puzzle game around a single interaction: click an object to scale it up or down, and use that
+                change in size to solve your way through a room. No combat, no inventory, no dialogue tree —
+                just one verb, applied to everything the raycast could hit, built and shipped in a weekend.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-challenge">
+        <div class="cs-content-inner">
+            <span class="section-tag">The Challenge</span>
+            <p>A one-verb game lives or dies on whether that verb feels good to use everywhere, not just in the
+                one puzzle it was designed for. Scaling a crate to climb on top of it is obvious. Scaling a
+                crate down so it fits through a gap, or scaling it up so it wedges a door open, only works if
+                the underlying interaction doesn't care what kind of object it's touching. That meant building
+                the scale interaction once, generically, rather than special-casing it per puzzle.
+            </p>
+            <div class="cs-callout">
+                <span class="cs-callout-label">Reasoning</span>
+                <p>I paired scaling with a raycast-based drag system, so objects could be resized and
+                    repositioned in the same interaction model — click, hold, move, release. Two mechanics
+                    sharing one input pattern meant less code to maintain under a one-weekend deadline, and a
+                    more consistent feel for the player: if you can click it, you can probably do something
+                    to it.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-solution">
+        <div class="cs-content-inner">
+            <span class="section-tag">What It Does</span>
+            <p>The player moves through a first-person environment solving spatial puzzles by scaling objects
+                up or down and dragging them into position — shrinking something to fit through a gap, growing
+                something to reach a ledge, or repositioning a scaled object to bridge a gap entirely.</p>
+            <ul style="padding-left: 40px">
+                <li>Click-based object scaling via raycast from the player's camera — any object tagged as
+                    scalable responds to the same interaction, with no per-object special-casing.
+                </li>
+                <li>Raycast-drag repositioning sharing the same input model as scaling, so the player has one
+                    consistent way to manipulate anything in the world rather than separate controls per
+                    mechanic.
+                </li>
+                <li>Puzzle rooms built entirely from Kenney and KayKit asset packs, constraining level design
+                    to what those kits actually provided rather than custom art — a real jam constraint, not a
+                    self-imposed one.
+                </li>
+            </ul>
+
+            <span class="section-tag">Architecture</span>
+            <p>Both interactions — scale and drag — fire from the same camera raycast, differing only in what
+                they do with the hit result. That shared foundation is what made it possible to build two
+                distinct mechanics inside a single weekend: one raycast, one hit-detection path, two different
+                responses depending on which interaction the player triggered.</p>
+
+            <div class="cs-code">
+                <pre>PlayerInteraction (MonoBehaviour)
+    → fires raycast from camera on interact input
+    → on hit: routes to Scale() or Drag() depending on input mode
+    → Scale() reads/writes hit object's transform.localScale directly
+    → Drag() repositions hit object along the raycast while held</pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="cs-retrospective">
+        <div class="cs-content-inner">
+            <span class="section-tag">Technical Notes to Keep in Mind</span>
+            <p>Drag has no bounds clamping. An object being dragged can be pulled straight through walls and
+                geometry, because the drag system repositions along the raycast without checking whether that
+                position is actually valid space. It didn't break the jam build because the puzzle rooms were
+                small and forgiving, but it's a real gap — not a stylistic choice — and it's the first thing
+                on the list before this system gets reused anywhere else.
+            </p>
+            <p>Scale had no min/max clamp either. Nothing stopped a determined player from scaling an object
+                down to zero or up past the room's geometry. For a weekend jam that's a shrug; for anything
+                built to last, it's an obvious next fix.
+            </p>
+            <p><span class="section-tag">Why It Matters</span></p>
+            <p>This is the project that proved the core interaction was worth building on. The shared
+                raycast-scale-drag foundation from this weekend became the base I returned to when scoping a
+                local two-player expansion — asymmetric co-op puzzles where one player scales and the other
+                moves faster, sharing a split-screen environment neither can solve alone. The bounds-clamping
+                fix flagged here is a direct prerequisite on that expansion's backlog.
+            </p>
+        </div>
+    </section>
+
+    <section id="cs-footer">
+        <div class="cs-content-inner">
+            <a href="https://harborviewgames.itch.io/honey-i-shrunk-myself" class="btn btn-primary">Play on itch.io
+                →</a>
+            <a href="https://github.com/VerbatimAura64/KenneyJam#honey-i-shrunk-myself" class="btn btn-primary">See the Repo →</a>
+            <a href="./index.html" class="btn btn-secondary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+</html>
